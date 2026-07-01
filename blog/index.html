@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Maggie Search</title>
+<meta name="description" content="Straight-talking guides on UK pet medicine prices, prescriptions, and how to save money without cutting corners on your pet's health.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#123526;
+    --bg-darker:#0E2A1E;
+    --mint:#7ED9A6;
+    --green-btn:#1E6B43;
+    --amber:#D6A64B;
+    --amber-text:#4A3510;
+    --banner-bg:#F6E8B8;
+    --banner-text:#8A5A12;
+    --paper:#FFFFFF;
+    --paper-raised:#F7F9F5;
+    --ink:#16241C;
+    --ink-soft:#4B5B50;
+    --line:#E3E7DE;
+    --max:840px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Inter',sans-serif;font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--green-btn);text-underline-offset:3px;}
+  a:focus-visible{outline:3px solid var(--amber);outline-offset:2px;}
+  img{max-width:100%;display:block;}
+
+  .site-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;background:var(--bg-darker);position:sticky;top:0;z-index:10;
+  }
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .brand-seal{width:36px;height:36px;flex-shrink:0;border-radius:50%;object-fit:cover;border:1.5px solid var(--mint);}
+  .brand-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.25rem;letter-spacing:-0.01em;color:#fff;}
+  .brand-name span{color:var(--mint);}
+  nav{display:flex;gap:22px;font-size:0.92rem;font-weight:500;}
+  nav a{text-decoration:none;color:#CFE0D6;}
+  nav a.active{color:var(--mint);font-weight:600;}
+  nav a:hover{color:var(--mint);}
+  @media (max-width:600px){ nav{display:none;} }
+
+  .blog-hero{background:var(--bg-dark);padding:56px 24px 44px;}
+  .blog-hero-inner{max-width:var(--max);margin:0 auto;}
+  .rx-strip{
+    display:inline-flex;gap:8px;align-items:center;
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+    letter-spacing:0.04em;text-transform:uppercase;
+    color:var(--amber-text);background:var(--amber);
+    padding:5px 12px;border-radius:20px;margin-bottom:20px;
+  }
+  h1{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(2rem, 5vw, 2.7rem);line-height:1.1;
+    letter-spacing:-0.015em;margin:0 0 14px;color:#fff;
+  }
+  .blog-hero p{font-size:1.1rem;color:#CFE0D6;max-width:60ch;margin:0;}
+
+  .post-list{max-width:var(--max);margin:0 auto;padding:32px 24px 80px;display:flex;flex-direction:column;gap:20px;}
+  .post-card{
+    display:block;text-decoration:none;color:var(--ink);
+    background:var(--paper-raised);border:1px solid var(--line);
+    border-left:5px solid var(--green-btn);
+    border-radius:10px;padding:26px 26px 24px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .post-card:hover{border-color:var(--green-btn);transform:translateY(-2px);}
+  .post-card .tag-row{
+    display:flex;gap:8px;align-items:center;margin-bottom:12px;
+    font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+    text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);
+  }
+  .post-card .tag-row .pill{background:var(--amber);color:var(--amber-text);padding:2px 8px;border-radius:3px;}
+  .post-card h2{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;
+    margin:0 0 10px;letter-spacing:-0.01em;color:var(--bg-dark);
+  }
+  .post-card p.excerpt{color:var(--ink-soft);margin:0 0 14px;max-width:64ch;}
+  .post-card .read-more{font-weight:700;font-size:0.9rem;color:var(--green-btn);}
+
+  .coming-soon{
+    border:1.5px dashed var(--line);border-radius:10px;
+    padding:26px;text-align:center;color:var(--ink-soft);font-size:0.95rem;
+  }
+  .coming-soon strong{color:var(--ink);}
+
+  .site-footer{
+    background:var(--bg-darker);border-top:1px solid rgba(255,255,255,0.08);
+    padding:32px 24px;text-align:center;font-size:0.85rem;color:#B9CCC0;
+  }
+  .paw-divider{margin:0 auto 14px;width:22px;opacity:0.7;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <img class="brand-seal" src="data:image/webp;base64,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" alt="Maggie, the Maggie Search mascot Pomeranian" width="36" height="36">
+    <span class="brand-name">Maggie <span>Search</span></span>
+  </a>
+  <nav>
+    <a href="/">Compare prices</a>
+    <a href="/blog" class="active">Blog</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+
+<div class="blog-hero">
+  <div class="blog-hero-inner">
+    <span class="rx-strip">Maggie Search Blog</span>
+    <h1>Straight answers on UK pet medicine costs</h1>
+    <p>No jargon, no scare tactics — just what actually drives the price of your dog or cat's medicine in the UK, and how to legally pay less.</p>
+  </div>
+</div>
+
+<div class="post-list">
+
+  <a class="post-card" href="/blog/why-pet-medicine-prices-vary-uk/">
+    <div class="tag-row"><span class="pill">Price Watch</span><span>7 min read</span></div>
+    <h2>Why Do Pet Medicine Prices Vary So Much in the UK?</h2>
+    <p class="excerpt">If your dog or cat's repeat prescription seems to cost more every time, you're not imagining it — and new 2026 CMA rules mean you now have more power to do something about it.</p>
+    <span class="read-more">Read the article &rarr;</span>
+  </a>
+
+  <div class="coming-soon">
+    <strong>More guides on the way.</strong><br>
+    We're publishing new articles on generic vs brand-name medication, flea and worming treatment costs, and how UK vet prescriptions actually work.
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <svg class="paw-divider" viewBox="0 0 24 24" fill="#7ED9A6" aria-hidden="true">
+    <circle cx="12" cy="15" r="5"/><circle cx="4" cy="9" r="2.4"/><circle cx="9" cy="4" r="2.4"/><circle cx="15" cy="4" r="2.4"/><circle cx="20" cy="9" r="2.4"/>
+  </svg>
+  <p>Maggie Search — comparing UK veterinary medicine prices by active ingredient.<br>Operated by KG Global Commerce Ltd (Companies House 17266029).</p>
+</footer>
+
+</body>
+</html>
