@@ -57,6 +57,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .search-hint{background:rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,.75);text-align:center;margin-top:10px;line-height:1.6;}
 .search-hint strong{color:rgba(255,255,255,.95);}
 .chips-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;justify-content:center;}
+.alt-section{margin-top:26px;}
+.alt-title{font-size:14px;font-weight:600;margin-bottom:4px;}
+.alt-sub{font-size:12px;color:var(--text2);margin-bottom:12px;}
+.alt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.alt-card{background:var(--white);border:1px solid #E5E7EB;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:7px;}
+.alt-name{font-size:14px;font-weight:600;}
+.alt-badge{font-size:11px;background:#FEF3C7;color:#92400E;padding:3px 8px;border-radius:8px;align-self:flex-start;font-weight:600;}
+.alt-price{font-size:13px;color:var(--text2);}
+.alt-price strong{color:var(--green);font-size:15px;}
+.alt-btn{margin-top:auto;background:var(--g1);color:#fff;border:none;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s;}
+.alt-btn:hover{background:var(--g0);}
+.alt-disclaimer{margin-top:12px;font-size:12px;color:#92400E;background:#FEF3C7;border:1px solid #FCD34D;border-radius:8px;padding:10px 12px;}
 .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);border-radius:20px;padding:6px 14px;font-size:12px;cursor:pointer;transition:.2s;}
 .chip:hover{background:rgba(255,255,255,.2);}
 .stats-section{background:rgba(255,255,255,.08);padding:20px 20px;margin-top:20px;border-top:1px solid rgba(255,255,255,.1);}
@@ -143,7 +155,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
     <div class="search-section" style="width:100%;padding:0;">
       <div class="search-box">
-        <input type="text" id="qi" placeholder="Type as on prescription: Apoquel 3.6mg · Bravecto 10-20kg · Rimadyl 25mg..."/>
+        <input type="text" id="qi" placeholder="Type as on prescription: Apoquel 3.6mg · Bravecto 10-20kg · Rimadyl 20mg..."/>
         <button onclick="searchMedicine()">Search Prices 🐾</button>
       </div>
     </div>
@@ -153,7 +165,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="chips-row">
       <span class="chip" onclick="quickSearch('Apoquel 3.6mg')">Apoquel 3.6mg</span>
       <span class="chip" onclick="quickSearch('Bravecto 4.5-10kg')">Bravecto 4.5-10kg</span>
-      <span class="chip" onclick="quickSearch('Rimadyl 25mg')">Rimadyl 25mg</span>
+      <span class="chip" onclick="quickSearch('Rimadyl 20mg')">Rimadyl 20mg</span>
       <span class="chip" onclick="quickSearch('NexGard 10-25kg')">NexGard 10-25kg</span>
       <span class="chip" onclick="quickSearch('Frontline Spot-on')">Frontline Spot-on</span>
       <span class="chip" onclick="quickSearch('Cerenia 16mg')">Cerenia 16mg</span>
@@ -229,21 +241,35 @@ const MAGGIE_FOUND = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAY
 </script>
 <script>
 var medicinesData = [
-  {name:"Apoquel",    dose:"3.6mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":15.99,"Pet Drugs Online":16.50,"Pets at Home":17.99,"VetUK":15.50,"Animed Direct":14.99}},
-  {name:"Apoquel",    dose:"5.4mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":18.99,"Pet Drugs Online":19.50,"Pets at Home":20.99,"VetUK":18.50,"Animed Direct":17.99}},
-  {name:"Apoquel",    dose:"16mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":32.99,"Pet Drugs Online":34.50,"Pets at Home":35.99,"VetUK":32.50,"Animed Direct":31.50}},
-  {name:"Bravecto",   dose:"4.5-10kg",    cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":24.99,"Pet Drugs Online":25.50,"Pets at Home":27.99,"VetUK":24.50,"Animed Direct":23.99}},
-  {name:"Bravecto",   dose:"10-20kg",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":34.99,"Pet Drugs Online":36.50,"Pets at Home":38.99,"VetUK":34.50,"Animed Direct":33.99}},
-  {name:"Bravecto",   dose:"20-40kg",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":44.99,"Pet Drugs Online":46.50,"Pets at Home":48.99,"VetUK":44.50,"Animed Direct":43.99}},
-  {name:"Rimadyl",    dose:"25mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":12.99,"Pet Drugs Online":13.50,"Pets at Home":14.99,"VetUK":12.50,"Animed Direct":11.99}},
-  {name:"Rimadyl",    dose:"50mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":15.99,"Pet Drugs Online":16.50,"Pets at Home":17.99,"VetUK":15.50,"Animed Direct":14.99}},
-  {name:"Rimadyl",    dose:"100mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":22.99,"Pet Drugs Online":24.50,"Pets at Home":25.99,"VetUK":22.50,"Animed Direct":21.99}},
-  {name:"NexGard",    dose:"10-25kg",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":29.99,"Pet Drugs Online":31.50,"Pets at Home":33.99,"VetUK":29.50,"Animed Direct":28.99}},
-  {name:"Frontline Spot-on", dose:"Dog",  cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":8.99, "Pet Drugs Online":9.50, "Pets at Home":10.99,"VetUK":8.50, "Animed Direct":7.99}},
-  {name:"Cerenia",    dose:"16mg",        cat:"Digestive",         sp:"Dogs", prices:{"VioVet":18.99,"Pet Drugs Online":19.50,"Pets at Home":21.99,"VetUK":18.50,"Animed Direct":17.99}},
-  {name:"Bravecto",   dose:"2.8-6.25kg",  cat:"Antiparasitic",     sp:"Cats", prices:{"VioVet":19.99,"Pet Drugs Online":21.50,"Pets at Home":23.99,"VetUK":19.50,"Animed Direct":18.99}},
-  {name:"Frontline Spot-on", dose:"Cat",  cat:"Antiparasitic",     sp:"Cats", prices:{"VioVet":7.99, "Pet Drugs Online":8.50, "Pets at Home":9.99, "VetUK":7.50, "Animed Direct":6.99}},
-  {name:"Cerenia",    dose:"4mg",         cat:"Digestive",         sp:"Cats", prices:{"VioVet":16.99,"Pet Drugs Online":17.50,"Pets at Home":19.99,"VetUK":16.50,"Animed Direct":15.99}}
+  {name:"Apoquel",    ai:"oclacitinib", dose:"3.6mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":15.99,"Pet Drugs Online":16.50,"Pets at Home":17.99,"VetUK":15.50,"Animed Direct":14.99}},
+  {name:"Apoquel",    ai:"oclacitinib", dose:"5.4mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":18.99,"Pet Drugs Online":19.50,"Pets at Home":20.99,"VetUK":18.50,"Animed Direct":17.99}},
+  {name:"Apoquel",    ai:"oclacitinib", dose:"16mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":32.99,"Pet Drugs Online":34.50,"Pets at Home":35.99,"VetUK":32.50,"Animed Direct":31.50}},
+  {name:"Bravecto",   ai:"fluralaner",  dose:"4.5-10kg",    cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":24.99,"Pet Drugs Online":25.50,"Pets at Home":27.99,"VetUK":24.50,"Animed Direct":23.99}},
+  {name:"Bravecto",   ai:"fluralaner",  dose:"10-20kg",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":34.99,"Pet Drugs Online":36.50,"Pets at Home":38.99,"VetUK":34.50,"Animed Direct":33.99}},
+  {name:"Bravecto",   ai:"fluralaner",  dose:"20-40kg",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":44.99,"Pet Drugs Online":46.50,"Pets at Home":48.99,"VetUK":44.50,"Animed Direct":43.99}},
+  {name:"Rimadyl",    ai:"carprofen",   dose:"20mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":12.99,"Pet Drugs Online":13.50,"Pets at Home":14.99,"VetUK":12.50,"Animed Direct":11.99}},
+  {name:"Rimadyl",    ai:"carprofen",   dose:"50mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":15.99,"Pet Drugs Online":16.50,"Pets at Home":17.99,"VetUK":15.50,"Animed Direct":14.99}},
+  {name:"Rimadyl",    ai:"carprofen",   dose:"100mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":22.99,"Pet Drugs Online":24.50,"Pets at Home":25.99,"VetUK":22.50,"Animed Direct":21.99}},
+  {name:"Carprieve",  ai:"carprofen",   dose:"20mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":10.49,"Pet Drugs Online":10.99,"Pets at Home":12.49,"VetUK":9.99,"Animed Direct":9.79}},
+  {name:"Carprieve",  ai:"carprofen",   dose:"50mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":12.99,"Pet Drugs Online":13.49,"Pets at Home":14.99,"VetUK":12.49,"Animed Direct":12.29}},
+  {name:"Carprieve",  ai:"carprofen",   dose:"100mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":17.99,"Pet Drugs Online":18.99,"Pets at Home":20.49,"VetUK":17.49,"Animed Direct":17.29}},
+  {name:"Rimifin",    ai:"carprofen",   dose:"20mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":9.99,"Pet Drugs Online":10.49,"Pets at Home":11.99,"VetUK":9.49,"Animed Direct":9.29}},
+  {name:"Rimifin",    ai:"carprofen",   dose:"50mg",        cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":12.49,"Pet Drugs Online":12.99,"Pets at Home":14.49,"VetUK":11.99,"Animed Direct":11.79}},
+  {name:"Rimifin",    ai:"carprofen",   dose:"100mg",       cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":17.49,"Pet Drugs Online":18.49,"Pets at Home":19.99,"VetUK":16.99,"Animed Direct":16.79}},
+  {name:"Metacam",    ai:"meloxicam",   dose:"1.5mg/ml",    cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":24.99,"Pet Drugs Online":25.50,"Pets at Home":27.99,"VetUK":24.50,"Animed Direct":23.99}},
+  {name:"Loxicom",    ai:"meloxicam",   dose:"1.5mg/ml",    cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":18.99,"Pet Drugs Online":19.50,"Pets at Home":21.99,"VetUK":18.49,"Animed Direct":17.99}},
+  {name:"Meloxidyl",  ai:"meloxicam",   dose:"1.5mg/ml",    cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":19.49,"Pet Drugs Online":19.99,"Pets at Home":22.49,"VetUK":18.99,"Animed Direct":18.49}},
+  {name:"Inflacam",   ai:"meloxicam",   dose:"1.5mg/ml",    cat:"Anti-inflammatory", sp:"Dogs", prices:{"VioVet":18.49,"Pet Drugs Online":18.99,"Pets at Home":21.49,"VetUK":17.99,"Animed Direct":17.49}},
+  {name:"NexGard",    ai:"afoxolaner",  dose:"10-25kg",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":29.99,"Pet Drugs Online":31.50,"Pets at Home":33.99,"VetUK":29.50,"Animed Direct":28.99}},
+  {name:"Frontline Spot-on", ai:"fipronil", dose:"Dog",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":8.99, "Pet Drugs Online":9.50, "Pets at Home":10.99,"VetUK":8.50, "Animed Direct":7.99}},
+  {name:"Effipro Spot-on",   ai:"fipronil", dose:"Dog",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":6.99, "Pet Drugs Online":7.50, "Pets at Home":8.99, "VetUK":6.50, "Animed Direct":6.29}},
+  {name:"Fiprotec Spot-on",  ai:"fipronil", dose:"Dog",     cat:"Antiparasitic",     sp:"Dogs", prices:{"VioVet":6.49, "Pet Drugs Online":6.99, "Pets at Home":8.49, "VetUK":5.99, "Animed Direct":5.79}},
+  {name:"Cerenia",    ai:"maropitant",  dose:"16mg",        cat:"Digestive",         sp:"Dogs", prices:{"VioVet":18.99,"Pet Drugs Online":19.50,"Pets at Home":21.99,"VetUK":18.50,"Animed Direct":17.99}},
+  {name:"Cerenia",    ai:"maropitant",  dose:"24mg",        cat:"Digestive",         sp:"Dogs", prices:{"VioVet":24.99,"Pet Drugs Online":25.99,"Pets at Home":27.99,"VetUK":24.49,"Animed Direct":23.99}},
+  {name:"Bravecto",   ai:"fluralaner",  dose:"2.8-6.25kg",  cat:"Antiparasitic",     sp:"Cats", prices:{"VioVet":19.99,"Pet Drugs Online":21.50,"Pets at Home":23.99,"VetUK":19.50,"Animed Direct":18.99}},
+  {name:"Frontline Spot-on", ai:"fipronil", dose:"Cat",     cat:"Antiparasitic",     sp:"Cats", prices:{"VioVet":7.99, "Pet Drugs Online":8.50, "Pets at Home":9.99, "VetUK":7.50, "Animed Direct":6.99}},
+  {name:"Effipro Spot-on",   ai:"fipronil", dose:"Cat",     cat:"Antiparasitic",     sp:"Cats", prices:{"VioVet":5.99, "Pet Drugs Online":6.50, "Pets at Home":7.99, "VetUK":5.50, "Animed Direct":5.29}},
+  {name:"Fiprotec Spot-on",  ai:"fipronil", dose:"Cat",     cat:"Antiparasitic",     sp:"Cats", prices:{"VioVet":5.49, "Pet Drugs Online":5.99, "Pets at Home":7.49, "VetUK":4.99, "Animed Direct":4.79}}
 ];
 
 var pharmacyLinks = {
@@ -335,7 +361,7 @@ function searchMedicine() {
 
   setTimeout(function () {
     var filtered = medicinesData.filter(function (m) {
-      return (m.name + " " + m.dose).toLowerCase().indexOf(q) !== -1;
+      return (m.name + " " + m.dose + " " + (m.ai || "")).toLowerCase().indexOf(q) !== -1;
     });
 
     if (filtered.length === 1) {
@@ -350,7 +376,7 @@ function searchMedicine() {
           "<div style=\"font-size:48px;margin-bottom:12px\">🔍</div>" +
           "<div style=\"font-size:16px;font-weight:600;margin-bottom:8px\">No results for \"" +
             document.getElementById("qi").value + "\"</div>" +
-          "<div style=\"font-size:13px\">Try: Apoquel 3.6mg &middot; Bravecto 10-20kg &middot; Rimadyl 25mg</div>" +
+          "<div style=\"font-size:13px\">Try: Apoquel 3.6mg &middot; Bravecto 10-20kg &middot; Rimadyl 20mg</div>" +
         "</div>";
       document.getElementById("count-badge").textContent = "0 medicines";
 
@@ -402,6 +428,17 @@ function showDetail(med) {
   var worst   = Math.max.apply(null, prices);
   var savings = (worst - best).toFixed(2);
 
+  /* same active ingredient + same dose = prescribable alternatives */
+  var alternatives = [];
+  if (med.ai) {
+    alternatives = medicinesData.filter(function (m) {
+      return m.ai === med.ai && m.dose === med.dose && m.name !== med.name;
+    }).sort(function (a, b) {
+      return Math.min.apply(null, Object.values(a.prices)) -
+             Math.min.apply(null, Object.values(b.prices));
+    });
+  }
+
   /* build header */
   var html =
     "<div class=\"res-header\">" +
@@ -425,7 +462,9 @@ function showDetail(med) {
     "<div class=\"res-aviso\">" +
       "<span><strong>Always use your vet prescription.</strong> Compare prices below.</span>" +
     "</div>" +
-    "<h3 style=\"margin-bottom:12px;font-size:14px;font-weight:600\">Prices at UK Pharmacies</h3>" +
+    "<h3 style=\"margin-bottom:12px;font-size:14px;font-weight:600\">" +
+      (alternatives.length ? "Exact match &mdash; prices at UK pharmacies" : "Prices at UK Pharmacies") +
+    "</h3>" +
     "<div class=\"price-grid\">";
 
   /* price cards — use data-href, bind click after innerHTML */
@@ -447,8 +486,39 @@ function showDetail(med) {
       "</div>";
   });
 
+  html += "</div>";
+
+  /* alternatives with the same active ingredient, sorted by best price */
+  if (alternatives.length) {
+    html +=
+      "<div class=\"alt-section\">" +
+        "<h3 class=\"alt-title\">Same active ingredient (" + med.ai + ")</h3>" +
+        "<div class=\"alt-sub\">Equivalent products your vet may be able to prescribe &mdash; sorted by best price.</div>" +
+        "<div class=\"alt-grid\">";
+
+    alternatives.forEach(function (alt, i) {
+      var altPrices = Object.values(alt.prices);
+      var altBest   = Math.min.apply(null, altPrices);
+      var altStore  = Object.keys(alt.prices).filter(function (ph) {
+        return alt.prices[ph] === altBest;
+      })[0];
+
+      html +=
+        "<div class=\"alt-card\">" +
+          "<div class=\"alt-name\">" + alt.name + " " + alt.dose + "</div>" +
+          "<div class=\"alt-badge\">💬 Ask your vet about this alternative</div>" +
+          "<div class=\"alt-price\">from <strong>&pound;" + altBest.toFixed(2) + "</strong> at " + altStore + "</div>" +
+          "<button class=\"alt-btn\" data-alt=\"" + i + "\">Compare prices &rarr;</button>" +
+        "</div>";
+    });
+
+    html +=
+        "</div>" +
+        "<div class=\"alt-disclaimer\">UK prescriptions are written for a specific product. Your vet can prescribe an alternative with the same active ingredient &mdash; always ask them first.</div>" +
+      "</div>";
+  }
+
   html +=
-    "</div>" +
     "<div class=\"legal-note\">&#8505; Prices are indicative. Always verify current price with the pharmacy. A valid UK vet prescription is required for prescription medicines.</div>";
 
   document.getElementById("res-content").innerHTML = html;
@@ -458,6 +528,13 @@ function showDetail(med) {
     btn.addEventListener("click", function () {
       var url = this.getAttribute("data-url");
       if (url && url !== "#") { window.open(url, "_blank", "noopener,noreferrer"); }
+    });
+  });
+
+  document.querySelectorAll("#res-content .alt-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var alt = alternatives[parseInt(this.getAttribute("data-alt"), 10)];
+      if (alt) { showDetail(alt); }
     });
   });
 
