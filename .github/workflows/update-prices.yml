@@ -12,6 +12,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    # Necessário para o passo de commit/push: sem isso o GITHUB_TOKEN é
+    # somente-leitura e o push falha com 403 (visto no run 28574938591)
+    permissions:
+      contents: write
+
     steps:
       # 1. Baixa o repositório
       - name: Checkout repository
@@ -30,7 +35,18 @@ jobs:
           AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
         run: python scripts/build_site.py
 
-      # 4. Commita o index.html atualizado de volta ao repositório
+      # 4. Publica os feeds brutos como artifact (para diagnóstico de cobertura
+      #    local — baixar em Actions → run → Artifacts, retenção 5 dias)
+      - name: Upload raw feeds as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: awin-feeds
+          path: feeds/
+          retention-days: 5
+          if-no-files-found: warn
+
+      # 5. Commita o index.html atualizado de volta ao repositório
       - name: Commit updated index.html
         run: |
           git config user.name  "Maggie Bot"

@@ -57,7 +57,12 @@ def download_feed(merchant_id: str) -> list[dict]:
         print(f"  Baixando feed merchant {merchant_id}...")
         req = urllib.request.Request(url, headers={"User-Agent": "MaggieSearch/1.0"})
         with urllib.request.urlopen(req, timeout=30) as resp:
-            lines = resp.read().decode("utf-8").splitlines()
+            raw = resp.read().decode("utf-8")
+        # Salva o feed bruto para o artifact de diagnóstico (workflow passo 4)
+        os.makedirs("feeds", exist_ok=True)
+        with open(f"feeds/feed_{merchant_id}.csv", "w", encoding="utf-8") as f:
+            f.write(raw)
+        lines = raw.splitlines()
         reader = csv.DictReader(lines)
         rows = list(reader)
         print(f"  → {len(rows)} produtos encontrados")
