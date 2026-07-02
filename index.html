@@ -35,7 +35,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .nav-search input{border:none;background:transparent;color:#fff;font-size:13px;width:100%;outline:none;font-family:inherit;}
 .nav-search input::placeholder{color:rgba(255,255,255,.5);}
 .nav-links{display:flex;gap:4px;margin-left:auto;}
-.nav-link{color:rgba(255,255,255,.8);font-size:13px;padding:6px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;}
+.nav-link{color:rgba(255,255,255,.8);font-size:13px;padding:6px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;text-decoration:none;}
 .nav-link:hover{background:rgba(255,255,255,.1);color:#fff;}
 @media(max-width:768px){.nav-search{max-width:none;margin:0 4px;}.nav-links{gap:2px;}}
 .disclaimer-bar{background:#FEF3C7;border-bottom:1px solid #FCD34D;padding:8px 20px;font-size:12px;color:#92400E;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
@@ -124,12 +124,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="nav-logo-text">Maggie <em>Search</em></div>
   </a>
   <span class="nav-badge">🇬🇧 Real Prices · June 2026</span>
-  <div class="nav-search" onclick="document.getElementById('nav-qi').focus();">
-    <input type="text" id="nav-qi" placeholder="Type: Apoquel 3.6mg..." autocomplete="off"/>
-  </div>
   <div class="nav-links">
-    <span class="nav-link">📖 Guides</span>
-    <span class="nav-link">❓ FAQ</span>
+    <a class="nav-link" href="/blog/">📖 Blog</a>
   </div>
 </nav>
 
@@ -275,18 +271,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("qi").addEventListener("keypress", function (e) {
     if (e.key === "Enter") { e.preventDefault(); searchMedicine(); }
   });
-
-  /* nav search box — keypress Enter */
-  var navQi = document.getElementById("nav-qi");
-  if (navQi) {
-    navQi.addEventListener("keypress", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        document.getElementById("qi").value = e.target.value;
-        searchMedicine();
-      }
-    });
-  }
 
   /* hero search BUTTON click */
   var searchBtn = document.querySelector(".search-box button");
