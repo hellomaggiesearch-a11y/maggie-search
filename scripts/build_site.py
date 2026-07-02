@@ -7,6 +7,7 @@ e gera o index.html atualizado automaticamente.
 
 import os
 import csv
+import gzip
 import json
 import re
 import urllib.request
@@ -42,29 +43,76 @@ MEDICINES_LOOKUP = [
     {"name": "Cerenia",           "ai": "maropitant",  "doses": ["16mg", "24mg"],            "cat": "Digestive",         "sp": "Dogs"},
 ]
 
-def download_feed(merchant_id: str) -> list[dict]:
-    """Baixa o datafeed CSV de um merchant via Awin API."""
+def get_feed_list() -> list[dict]:
+    """Baixa a lista de datafeeds do publisher (Create-a-Feed list).
+
+    O endpoint de download exige o FEED ID (fid), que é diferente do
+    advertiser/merchant ID — esta lista é onde os fids são descobertos.
+    """
+    if not AWIN_API_TOKEN:
+        return []
+    url = f"https://productdata.awin.com/datafeed/list/apikey/{AWIN_API_TOKEN}/"
+    try:
+        print("Baixando lista de datafeeds...")
+        req = urllib.request.Request(url, headers={"User-Agent": "MaggieSearch/1.0"})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            raw = resp.read().decode("utf-8", errors="replace")
+        os.makedirs("feeds", exist_ok=True)
+        with open("feeds/feed_list.csv", "w", encoding="utf-8") as f:
+            f.write(raw)
+        # Normaliza os nomes de coluna (o header da Awin usa "Advertiser ID" etc.)
+        rows = []
+        for row in csv.DictReader(raw.splitlines()):
+            clean = {}
+            for k, v in row.items():
+                if not isinstance(k, str):
+                    continue  # colunas extras sem header
+                if not isinstance(v, str):
+                    v = "" if v is None else str(v)
+                clean[k.strip().lower()] = v.strip()
+            rows.append(clean)
+        print(f"  → {len(rows)} feeds disponíveis para o publisher")
+        return rows
+    except urllib.error.HTTPError as e:
+        print(f"  [ERRO] Lista de feeds: HTTP {e.code} — se 401/403/404, o secret "
+              f"AWIN_API_TOKEN pode ser o token errado (precisa da API key de "
+              f"datafeed da página Create-a-Feed, não o token OAuth da api.awin.com)")
+        return []
+    except Exception as e:
+        print(f"  [ERRO] Lista de feeds: {e}")
+        return []
+
+def download_feed(merchant_id: str, feed_list: list[dict]) -> list[dict]:
+    """Baixa o datafeed CSV de um merchant, resolvendo o feed ID pela lista."""
     if not AWIN_API_TOKEN:
         print(f"  [SKIP] Sem AWIN_API_TOKEN — usando dados de fallback")
         return []
 
-    url = (
-        f"https://productdata.awin.com/datafeed/download/apikey/{AWIN_API_TOKEN}"
-        f"/language/en/fid/{merchant_id}/columns/aw_product_id,product_name,"
-        f"search_price,merchant_deep_link,merchant_name/format/csv/"
-    )
+    candidates = [r for r in feed_list if r.get("advertiser id") == merchant_id]
+    if not candidates:
+        print(f"  [ERRO] Nenhum feed na lista para o advertiser {merchant_id} "
+              f"(verificar aprovação/assinatura do feed no painel Awin)")
+        return []
+
+    feed = candidates[0]
+    url = feed.get("url", "")
+    if not url:
+        print(f"  [ERRO] Feed do advertiser {merchant_id} sem URL na lista")
+        return []
+
     try:
-        print(f"  Baixando feed merchant {merchant_id}...")
+        print(f"  Baixando feed {feed.get('feed id', '?')} do advertiser {merchant_id}...")
         req = urllib.request.Request(url, headers={"User-Agent": "MaggieSearch/1.0"})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            raw = resp.read().decode("utf-8")
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = resp.read()
+        if "/compression/gzip" in url or data[:2] == b"\x1f\x8b":
+            data = gzip.decompress(data)
+        raw = data.decode("utf-8", errors="replace")
         # Salva o feed bruto para o artifact de diagnóstico (workflow passo 4)
         os.makedirs("feeds", exist_ok=True)
         with open(f"feeds/feed_{merchant_id}.csv", "w", encoding="utf-8") as f:
             f.write(raw)
-        lines = raw.splitlines()
-        reader = csv.DictReader(lines)
-        rows = list(reader)
+        rows = list(csv.DictReader(raw.splitlines()))
         print(f"  → {len(rows)} produtos encontrados")
         return rows
     except Exception as e:
@@ -133,10 +181,11 @@ def build_medicines_data() -> list[dict]:
     }
 
     # Baixa todos os feeds disponíveis
+    feed_list = get_feed_list()
     feeds = {}
     for merchant_name, info in MERCHANTS.items():
         print(f"Processando {merchant_name}...")
-        rows = download_feed(info["id"])
+        rows = download_feed(info["id"], feed_list)
         if rows:
             feeds[merchant_name] = rows
 
