@@ -24,6 +24,9 @@
 <style>
 :root{--g0:#0C2E1A;--g1:#1A5C2A;--g2:#2C7A3E;--g4:#A8D9B8;--g5:#E1F5EA;--amber:#F59E0B;--red:#DC2626;--blue:#1D4ED8;--green:#16A34A;--text:#1C2A1E;--text2:#4A6550;--text3:#7A9B82;--border:#D4EAD9;--white:#fff;--r:12px;}
 *{box-sizing:border-box;margin:0;padding:0;}
+html,body{overflow-x:hidden;max-width:100%;}
+img{max-width:100%;height:auto;}
+.card,.alt-card,.price-card,.check-card{min-width:0;overflow-wrap:break-word;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F4FCF6;color:var(--text);font-size:14px;min-height:100vh;line-height:1.6;}
 .nav{background:var(--g0);padding:0 20px;height:52px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:40;}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;}
@@ -38,6 +41,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .nav-link{color:rgba(255,255,255,.8);font-size:13px;padding:6px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;text-decoration:none;}
 .nav-link:hover{background:rgba(255,255,255,.1);color:#fff;}
 @media(max-width:768px){.nav-search{max-width:none;margin:0 4px;}.nav-links{gap:2px;}}
+@media(max-width:480px){.nav-badge{display:none;}}
 .disclaimer-bar{background:#FEF3C7;border-bottom:1px solid #FCD34D;padding:8px 20px;font-size:12px;color:#92400E;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .disclaimer-bar a{color:#92400E;font-weight:600;text-decoration:none;}
 .disclaimer-bar a:hover{text-decoration:underline;}
@@ -51,7 +55,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .trust-badges{display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.8);}
 .search-section{max-width:720px;margin:0 auto;padding:0 20px;}
 .search-box{background:var(--white);border-radius:var(--r);display:flex;align-items:center;gap:0;margin-top:4px;box-shadow:0 4px 24px rgba(0,0,0,.12);}
-.search-box input{flex:1;border:none;outline:none;font-size:15px;padding:14px 16px;border-radius:var(--r) 0 0 var(--r);font-family:inherit;color:var(--text);}
+.search-box input{flex:1;min-width:0;border:none;outline:none;font-size:15px;padding:14px 16px;border-radius:var(--r) 0 0 var(--r);font-family:inherit;color:var(--text);}
 .search-box button{background:var(--g1);color:#fff;border:none;border-radius:0 var(--r) var(--r) 0;padding:14px 22px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;transition:.2s;}
 .search-box button:hover{background:var(--g0);}
 .search-hint{background:rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,.75);text-align:center;margin-top:10px;line-height:1.6;}
@@ -85,18 +89,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);border-radius:20px;padding:6px 14px;font-size:12px;cursor:pointer;transition:.2s;}
 .chip:hover{background:rgba(255,255,255,.2);}
 .stats-section{background:rgba(255,255,255,.08);padding:20px 20px;margin-top:20px;border-top:1px solid rgba(255,255,255,.1);}
-.stats-grid{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center;}
+.stats-grid{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;text-align:center;}
 .stat{color:rgba(255,255,255,.9);}
 .stat-num{font-size:22px;font-weight:700;color:var(--g4);}
 .stat-label{font-size:12px;color:rgba(255,255,255,.7);margin-top:4px;}
-.main{max-width:1100px;margin:0 auto;padding:20px;display:grid;grid-template-columns:240px 1fr;gap:20px;}
+.main{max-width:1100px;margin:0 auto;padding:20px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px;}
 .sidebar{background:var(--white);border-radius:var(--r);border:0.5px solid var(--border);padding:14px;height:fit-content;position:sticky;top:62px;}
 .sb-title{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;}
 .sb-section{margin-bottom:16px;}
 .sb-chip{display:block;width:100%;text-align:left;padding:7px 10px;border-radius:7px;border:none;background:transparent;font-size:13px;color:var(--text2);cursor:pointer;font-family:inherit;}
 .sb-chip:hover{background:var(--g5);}
 .sb-chip.on{background:var(--g0);color:#fff;font-weight:500;}
-.content{}
+.content{min-width:0;}
 .content-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
 .count-badge{font-size:13px;color:var(--text3);}
 .uk-badge{font-size:11px;background:#EFF6FF;color:#1D4ED8;padding:3px 10px;border-radius:6px;font-weight:500;}
@@ -113,7 +117,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .resultado{display:none;}
 .res-header{background:linear-gradient(135deg,var(--g0),var(--g1));border-radius:var(--r);padding:20px;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:16px;}
 .res-maggie{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,217,184,.4);flex-shrink:0;background:#A8D9B8;display:flex;align-items:center;justify-content:center;font-size:40px;}
-.res-info{}
+.res-info{min-width:0;overflow-wrap:break-word;}
 .res-badge{font-size:10px;background:rgba(245,158,11,.25);color:var(--amber);padding:2px 8px;border-radius:6px;font-weight:600;display:inline-block;margin-bottom:4px;}
 .res-nome{font-size:18px;font-weight:700;margin-bottom:2px;}
 .res-pa{font-size:12px;color:rgba(255,255,255,.7);}
@@ -162,7 +166,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .cookie-btn.accept:hover{background:#fff;}
 .cookie-btn.reject{background:rgba(255,255,255,.12);color:#fff;}
 .cookie-btn.reject:hover{background:rgba(255,255,255,.22);}
-@media(max-width:768px){.main{grid-template-columns:1fr;gap:16px;}.sidebar{position:static;height:auto;}.hero-title{font-size:24px;}.hero-sub{font-size:14px;}}
+@media(max-width:768px){.main{grid-template-columns:minmax(0,1fr);gap:16px;}.sidebar{position:static;height:auto;}.hero-title{font-size:24px;}.hero-sub{font-size:14px;}}
 </style>
 </head>
 <body>
