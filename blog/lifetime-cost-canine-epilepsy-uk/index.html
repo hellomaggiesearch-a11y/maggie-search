@@ -39,7 +39,7 @@
     display:flex;align-items:center;justify-content:space-between;
     flex-wrap:wrap;gap:12px;
   }
-  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none}
   .brand-seal{width:36px;height:36px;flex-shrink:0;border-radius:50%;object-fit:cover;border:1.5px solid var(--mint);}
   .brand-name{font-family:'Fraunces',serif;font-weight:600;font-size:20px;letter-spacing:.2px}
   .brand-name span{color:var(--mint)}
@@ -171,10 +171,10 @@
 <body>
 
 <header class="site-header">
-  <div class="brand">
+  <a href="/" class="brand">
     <img class="brand-seal" src="data:image/webp;base64,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" alt="Maggie, the Maggie Search mascot Pomeranian" width="36" height="36">
     <span class="brand-name">Maggie <span>Search</span></span>
-  </div>
+  </a>
   <nav class="nav-links">
     <a href="/">Home</a>
     <a href="/blog/">Blog</a>
