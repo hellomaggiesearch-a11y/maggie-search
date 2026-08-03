@@ -65,6 +65,126 @@ def viovet_check_url(name: str) -> str:
     """Link simples para conferir o preço na VioVet (nunca afiliado)."""
     return VIOVET_PRODUCT_URLS.get(name, "https://www.viovet.co.uk/")
 
+# ── Catálogo OTC da VioVet (data/viovet_products.json) ──────────
+# ADIÇÃO de dados: 151 produtos OTC entram no mesmo schema do medicinesData,
+# no MESMO padrão dos Rx (sem preço — prices/links vazios — só o link
+# afiliado no botão "Check today's price"). Nada de layout/CSS é tocado.
+VIOVET_PRODUCTS_PATH = "data/viovet_products.json"
+
+# Espécie (PT do feed) → valor do filtro da sidebar (Dogs/Cats, match exato).
+# Valores fora de Dogs/Cats aparecem apenas sob "All Species".
+SPECIES_LABEL = {  # rótulo curto exibido no campo `dose`
+    "Cão": "Dog", "Gato": "Cat", "Cão e Gato": "Dog & Cat",
+    "Indefinido": "", "Cavalo": "Horse",
+}
+# Grupo (PT) → categoria EN. Antiparasitários e vermífugos entram no filtro
+# "Antiparasitic" existente; digestivo em "Digestive". O resto é traduzido e
+# fica visível só sob "All Categories" (sem novos botões = sem mudança de HTML).
+CATEGORY_EN = {
+    "Antipulgas e Carrapatos": "Antiparasitic",
+    "Vermífugos":              "Antiparasitic",
+    "Digestivo":               "Digestive",
+    "Calmantes":               "Calming",
+    "Pele e Feridas":          "Skin & Wound",
+    "Suplementos":             "Supplement",
+    "Cuidado de Ouvido":       "Ear Care",
+    "Saúde Dental":            "Dental",
+    "Cuidado de Olhos":        "Eye Care",
+    "Outros":                  "Other",
+    "Equipamento":             "Equipment",
+}
+
+def _viovet_dose_label(especie: str, chave: str, dose_mg: str,
+                       faixa_peso: str, comparable: bool) -> str:
+    """Rótulo `dose` do card. Para comparáveis, deriva de chave_equivalencia
+    (ativo|especie|dosepart) para que o par (ai, dose) identifique UNICAMENTE
+    ativo+espécie+dose — impedindo que produtos de espécies diferentes com o
+    mesmo princípio ativo sejam agrupados como equivalentes."""
+    sp_label = SPECIES_LABEL.get(especie, especie)
+    if comparable and chave:
+        parts = chave.split("|")
+        dosepart = parts[2].strip() if len(parts) >= 3 else ""
+        if dosepart and dosepart.lower() != "unico":
+            return (sp_label + " · " + dosepart).strip(" ·")
+        return sp_label or dosepart
+    # não-comparável: dose é só exibição (ai vazio → nunca agrupa)
+    return (dose_mg or faixa_peso or sp_label or "").strip()
+
+def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH) -> list[dict]:
+    """Mapeia os OTC da VioVet para o schema medicinesData (mesmo dos Rx).
+
+    Preço NUNCA entra: prices/links ficam vazios e o botão usa o link
+    afiliado (verbatim, a=2955355&m=6960). Regras de segurança:
+      • ATENCAO_GATO (Tri-Act) → nunca gera item de gato; ai="" (não agrupa).
+      • VERIFICAR              → ai="" (aparece individual, nunca equivalência).
+      • comparavel != SIM      → ai="" (individual).
+    Só entram em grupo de equivalência: comparavel=SIM E flag ∉ {VERIFICAR,
+    ATENCAO_GATO}. Espécie "Cão e Gato" é duplicada (Dogs + Cats) para aparecer
+    nos dois filtros da sidebar.
+    """
+    if not os.path.exists(path):
+        print(f"  [AVISO] {path} não encontrado — nenhum OTC VioVet adicionado")
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        raw = json.load(f)
+
+    out = []
+    seen_group_keys: dict[tuple[str, str], str] = {}  # (ai,dose) → chave
+    for p in raw:
+        especie = (p.get("especie") or "").strip()
+        flag    = (p.get("flag_seguranca") or "").strip()
+        chave   = (p.get("chave_equivalencia") or "").strip()
+        nome    = (p.get("nome") or "").strip()
+        link    = (p.get("link_afiliado") or "").strip()
+        grupo   = (p.get("grupo") or "").strip()
+
+        comparable = ((p.get("comparavel") or "").strip() == "SIM"
+                      and flag not in ("VERIFICAR", "ATENCAO_GATO"))
+        ai = (p.get("principio_ativo") or "").strip() if comparable else ""
+        if ai.lower() == "não identificado":  # nunca vira chave de agrupamento
+            ai, comparable = "", False
+
+        dose = _viovet_dose_label(especie, chave, p.get("dose_mg", ""),
+                                  p.get("faixa_peso", ""), comparable)
+        cat  = CATEGORY_EN.get(grupo, "Other")
+
+        # espécies-alvo p/ o filtro (duplica dual; ATENCAO_GATO nunca é gato)
+        if especie == "Cão e Gato" and flag != "ATENCAO_GATO":
+            targets = ["Dogs", "Cats"]
+        elif especie == "Cão":
+            targets = ["Dogs"]
+        elif especie == "Gato":
+            targets = ["Cats"]
+        else:  # Indefinido / Cavalo / outros → só sob "All Species"
+            targets = ["Dogs & Cats"]
+        if flag == "ATENCAO_GATO":               # trava de segurança dura
+            targets = [t for t in targets if t != "Cats"] or ["Dogs"]
+
+        # anti-colisão: nunca deixar (ai,dose) iguais apontarem p/ chaves ≠
+        if ai:
+            k = (ai, dose)
+            if k in seen_group_keys and seen_group_keys[k] != chave:
+                raise SystemExit(
+                    f"[ERRO] Colisão de agrupamento (ai,dose)={k}: chaves "
+                    f"distintas {seen_group_keys[k]!r} vs {chave!r} — "
+                    f"cruzaria produtos NÃO equivalentes. Abortando.")
+            seen_group_keys[k] = chave
+
+        for sp in targets:
+            out.append({
+                "name":   nome,
+                "ai":     ai,
+                "dose":   dose,
+                "cat":    cat,
+                "sp":     sp,
+                "prices": {},
+                "links":  {},
+                "check":  link or "https://www.viovet.co.uk/",
+            })
+
+    print(f"  → {len(out)} itens OTC VioVet mapeados (de {len(raw)} produtos)")
+    return out
+
 def get_feed_list() -> list[dict]:
     """Baixa a lista de datafeeds do publisher (Create-a-Feed list).
 
@@ -202,6 +322,9 @@ def build_medicines_data() -> list[dict]:
                 "links":  links,
                 "check":  viovet_check_url(name),
             })
+
+    # Adição: catálogo OTC da VioVet (mesmo schema/padrão dos Rx, sem preço)
+    medicines_out.extend(load_viovet_products())
 
     return medicines_out
 
