@@ -20,7 +20,7 @@ PUBLISHER_ID   = os.environ.get("AWIN_PUBLISHER_ID", "2955355")
 
 # Merchants aprovados no Awin com seus IDs
 MERCHANTS = {
-    "VioVet":          {"id": "4782",  "url": "https://www.viovet.co.uk/"},
+    "VioVet":          {"id": "6960",  "url": "https://www.viovet.co.uk/"},  # 6960 = advertiser Awin real (feed 14359, ~46k produtos); 4782 estava errado
     "Morgan & French": {"id": "9897",  "url": "https://www.morganandfrence.co.uk/"},
     "Vetz Petz Antinol UK": {"id": "14799", "url": "https://vetzpetz.co.uk/"},
 }
@@ -110,11 +110,15 @@ def _viovet_dose_label(especie: str, chave: str, dose_mg: str,
     # não-comparável: dose é só exibição (ai vazio → nunca agrupa)
     return (dose_mg or faixa_peso or sp_label or "").strip()
 
-def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH) -> list[dict]:
+def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH,
+                         feed_rows: list[dict] | None = None) -> list[dict]:
     """Mapeia os OTC da VioVet para o schema medicinesData (mesmo dos Rx).
 
-    Preço NUNCA entra: prices/links ficam vazios e o botão usa o link
-    afiliado (verbatim, a=2955355&m=6960). Regras de segurança:
+    Preço vem EXCLUSIVAMENTE do feed diário (feed_rows), casado por ID exato
+    (nosso id_produto == aw_product_id do feed). Sem feed / produto ausente →
+    prices/links vazios e o botão usa o link afiliado (verbatim,
+    a=2955355&m=6960) — nunca há preço fixo/hardcoded que envelhece.
+    Regras de segurança:
       • ATENCAO_GATO (Tri-Act) → nunca gera item de gato; ai="" (não agrupa).
       • VERIFICAR              → ai="" (aparece individual, nunca equivalência).
       • comparavel != SIM      → ai="" (individual).
@@ -128,6 +132,21 @@ def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH) -> list[dict]:
     with open(path, "r", encoding="utf-8") as f:
         raw = json.load(f)
 
+    # Índice de preço do feed VioVet: aw_product_id → search_price (só GBP > 0).
+    # Preço real do dia; nada é inventado aqui.
+    price_by_id: dict[str, float] = {}
+    for row in (feed_rows or []):
+        pid = (row.get("aw_product_id") or "").strip()
+        if not pid:
+            continue
+        try:
+            pr = float((row.get("search_price") or "0").replace("£", "").strip())
+        except (ValueError, AttributeError):
+            continue
+        cur = (row.get("currency") or "GBP").strip().upper()
+        if pr > 0 and cur in ("GBP", ""):
+            price_by_id[pid] = round(pr, 2)
+
     out = []
     seen_group_keys: dict[tuple[str, str], str] = {}  # (ai,dose) → chave
     for p in raw:
@@ -137,6 +156,7 @@ def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH) -> list[dict]:
         nome    = (p.get("nome") or "").strip()
         link    = (p.get("link_afiliado") or "").strip()
         grupo   = (p.get("grupo") or "").strip()
+        pid     = (p.get("id_produto") or "").strip()
 
         comparable = ((p.get("comparavel") or "").strip() == "SIM"
                       and flag not in ("VERIFICAR", "ATENCAO_GATO"))
@@ -170,6 +190,11 @@ def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH) -> list[dict]:
                     f"cruzaria produtos NÃO equivalentes. Abortando.")
             seen_group_keys[k] = chave
 
+        # preço do feed (ID exato). Ausente hoje → cai no botão "Check price".
+        price  = price_by_id.get(pid)
+        prices = {"VioVet": price} if price else {}
+        links  = {"VioVet": link} if price else {}
+
         for sp in targets:
             out.append({
                 "name":   nome,
@@ -177,12 +202,14 @@ def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH) -> list[dict]:
                 "dose":   dose,
                 "cat":    cat,
                 "sp":     sp,
-                "prices": {},
-                "links":  {},
+                "prices": prices,
+                "links":  links,
                 "check":  link or "https://www.viovet.co.uk/",
             })
 
-    print(f"  → {len(out)} itens OTC VioVet mapeados (de {len(raw)} produtos)")
+    n_priced = sum(1 for m in out if m["prices"])
+    print(f"  → {len(out)} itens OTC VioVet mapeados (de {len(raw)} produtos); "
+          f"{n_priced} com preço do feed")
     return out
 
 def get_feed_list() -> list[dict]:
@@ -323,8 +350,9 @@ def build_medicines_data() -> list[dict]:
                 "check":  viovet_check_url(name),
             })
 
-    # Adição: catálogo OTC da VioVet (mesmo schema/padrão dos Rx, sem preço)
-    medicines_out.extend(load_viovet_products())
+    # Adição: catálogo OTC da VioVet (mesmo schema/padrão dos Rx); preço vem
+    # do feed VioVet (advertiser 6960) casado por ID exato — nunca hardcoded.
+    medicines_out.extend(load_viovet_products(feed_rows=feeds.get("VioVet")))
 
     return medicines_out
 
