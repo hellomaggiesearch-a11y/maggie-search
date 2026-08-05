@@ -60,6 +60,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .search-box button:hover{background:var(--g0);}
 .search-hint{background:rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,.75);text-align:center;margin-top:10px;line-height:1.6;}
 .search-hint strong{color:rgba(255,255,255,.95);}
+.search-alert{margin-top:10px;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.5;text-align:center;font-weight:500;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px;border:1px solid transparent;box-shadow:0 2px 12px rgba(0,0,0,.10);}
+.search-alert[hidden]{display:none;}
+.search-alert.ok{background:var(--g5);color:var(--g0);border-color:var(--g4);}
+.search-alert.none{background:#FDECEC;color:var(--red);border-color:rgba(220,38,38,.35);}
+.search-alert.info{background:var(--white);color:var(--text2);border-color:var(--border);}
+.search-alert .sa-see{background:var(--g1);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.2s;}
+.search-alert .sa-see:hover{background:var(--g0);}
 .chips-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;justify-content:center;}
 .alt-section{margin-top:26px;}
 .anchor-case{max-width:720px;margin:24px auto 0;background:rgba(255,255,255,.08);border:1px solid rgba(168,217,184,.3);border-radius:var(--r);padding:16px 20px;text-align:left;}
@@ -117,6 +124,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .resultado{display:none;}
 .res-header{background:linear-gradient(135deg,var(--g0),var(--g1));border-radius:var(--r);padding:20px;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:16px;}
 .res-maggie{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,217,184,.4);flex-shrink:0;background:#A8D9B8;display:flex;align-items:center;justify-content:center;font-size:40px;}
+.mascot-icon{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,217,184,.6);background:#A8D9B8;flex-shrink:0;display:block;}
 .res-info{min-width:0;overflow-wrap:break-word;}
 .res-badge{font-size:10px;background:rgba(245,158,11,.25);color:var(--amber);padding:2px 8px;border-radius:6px;font-weight:600;display:inline-block;margin-bottom:4px;}
 .res-nome{font-size:18px;font-weight:700;margin-bottom:2px;}
@@ -199,6 +207,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <input type="text" id="qi" placeholder="Type as on prescription: Apoquel 3.6mg · Bravecto 10-20kg · Rimadyl 20mg..."/>
         <button onclick="searchMedicine()">Find Equivalents 🐾</button>
       </div>
+      <div id="search-alert" class="search-alert" role="status" aria-live="polite" hidden></div>
     </div>
     <div class="search-hint">
       <strong>Type exactly as on your vet prescription</strong> — including dose. Each dose is different.
@@ -650,19 +659,13 @@ function showView(which) {
 document.addEventListener("DOMContentLoaded", function () {
   renderMeds(medicinesData);
 
-  /* hero search box — keypress Enter */
-  document.getElementById("qi").addEventListener("keypress", function (e) {
+  /* hero search box — Enter to search (keydown is reliable across browsers) */
+  document.getElementById("qi").addEventListener("keydown", function (e) {
     if (e.key === "Enter") { e.preventDefault(); searchMedicine(); }
   });
 
-  /* hero search BUTTON click */
-  var searchBtn = document.querySelector(".search-box button");
-  if (searchBtn) {
-    searchBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      searchMedicine();
-    });
-  }
+  /* Button click is handled by its inline onclick="searchMedicine()".
+     A second listener here would fire the search twice per click. */
 });
 
 /* ── render card grid ─────────────────────────────────────── */
@@ -705,20 +708,55 @@ function renderMeds(meds) {
   document.getElementById("count-badge").textContent = meds.length + " medicines";
 }
 
+/* ── search feedback alert ────────────────────────────────── */
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+
+function hideSearchAlert() {
+  var el = document.getElementById("search-alert");
+  if (el) { el.hidden = true; el.className = "search-alert"; el.innerHTML = ""; }
+}
+
+function setSearchAlert(kind, html) {
+  var el = document.getElementById("search-alert");
+  if (!el) { return; }
+  el.className = "search-alert " + kind;
+  el.innerHTML = html;
+  el.hidden = false;
+}
+
+/* smooth-scroll to the top of the results block (list OR detail view) */
+function scrollToResults() {
+  var target = document.getElementById("main-layout");
+  if (!target) { return; }
+  var reduce = false;
+  try {
+    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  } catch (e) { /* older browsers */ }
+  if (target.scrollIntoView) {
+    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  }
+}
+
 /* ── search ───────────────────────────────────────────────── */
 function searchMedicine() {
   var qi     = document.getElementById("qi");
-  var q      = qi ? qi.value.trim().toLowerCase() : "";
+  var raw    = qi ? qi.value.trim() : "";
+  var q      = raw.toLowerCase();
   var maggie = document.getElementById("hero-maggie");
 
-  showView("lista");
-
-  if (!q) {
-    renderMeds(medicinesData);
+  /* empty / too short — ask for input, do NOT run the search */
+  if (q.length < 2) {
     if (maggie) { maggie.className = "hero-maggie maggie-idle"; }
+    setSearchAlert("info",
+      "Type a medication name (as on your vet&rsquo;s prescription) to search.");
     return;
   }
 
+  showView("lista");
   if (maggie) { maggie.className = "hero-maggie maggie-searching"; }
 
   setTimeout(function () {
@@ -728,26 +766,37 @@ function searchMedicine() {
 
     trackSearch(q, filtered.length);
 
-    if (filtered.length === 1) {
-      if (maggie) { maggie.className = "hero-maggie maggie-found"; }
-      showDetail(filtered[0]);
-
-    } else if (filtered.length === 0) {
+    if (filtered.length === 0) {
       if (maggie) { maggie.className = "hero-maggie maggie-idle"; }
+      setSearchAlert("none",
+        "&#10007; No equivalents found for &lsquo;" + esc(raw) + "&rsquo;. " +
+        "Check the spelling and include the exact dose — e.g. &lsquo;NexGard 10-25kg&rsquo;.");
       showView("lista");
       document.getElementById("grid-area").innerHTML =
         "<div style=\"grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text2)\">" +
           "<div style=\"font-size:48px;margin-bottom:12px\">🔍</div>" +
-          "<div style=\"font-size:16px;font-weight:600;margin-bottom:8px\">No results for \"" +
-            document.getElementById("qi").value + "\"</div>" +
+          "<div style=\"font-size:16px;font-weight:600;margin-bottom:8px\">No results for &ldquo;" +
+            esc(raw) + "&rdquo;</div>" +
           "<div style=\"font-size:13px\">Try: Apoquel 3.6mg &middot; Bravecto 10-20kg &middot; Rimadyl 20mg</div>" +
         "</div>";
       document.getElementById("count-badge").textContent = "0 medicines";
-
-    } else {
-      if (maggie) { maggie.className = "hero-maggie maggie-found"; }
-      renderMeds(filtered);
+      return;
     }
+
+    /* ≥ 1 result — confirm success, invite, then auto-scroll to the results */
+    var n = filtered.length;
+    setSearchAlert("ok",
+      "<span>&#10003; Found " + n + " equivalent" + (n === 1 ? "" : "s") +
+        " for &lsquo;" + esc(raw) + "&rsquo;.</span>" +
+      "<button type=\"button\" class=\"sa-see\" onclick=\"scrollToResults()\">See results &darr;</button>");
+
+    if (maggie) { maggie.className = "hero-maggie maggie-found"; }
+
+    if (n === 1) { showDetail(filtered[0]); }
+    else { renderMeds(filtered); }
+
+    /* small delay so the user reads the confirmation before the page scrolls */
+    setTimeout(scrollToResults, 400);
   }, 400);
 }
 
@@ -823,7 +872,7 @@ function showDetail(med) {
   /* header */
   var html =
     "<div class=\"res-header\">" +
-      "<div class=\"res-maggie\">🐶</div>" +
+      "<img class=\"mascot-icon\" src=\"assets/img/mascot-icon.webp\" alt=\"\" aria-hidden=\"true\" width=\"70\" height=\"70\"/>" +
       "<div class=\"res-info\">" +
         "<div class=\"res-badge\">" + (hasPrices ? "PRICE COMPARISON" : "ACTIVE INGREDIENT COMPARISON") + "</div>" +
         "<div class=\"res-nome\">" + med.name + "</div>" +
