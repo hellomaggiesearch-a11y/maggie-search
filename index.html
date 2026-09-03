@@ -210,6 +210,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .cookie-btn.reject{background:rgba(255,255,255,.12);color:#fff;}
 .cookie-btn.reject:hover{background:rgba(255,255,255,.22);}
 @media(max-width:768px){.main{grid-template-columns:minmax(0,1fr);gap:16px;}.sidebar{position:static;height:auto;}.hero-title{font-size:24px;}.hero-sub{font-size:14px;}}
+.price-alert{background:#F4FCF6;border:1px solid #CFE8D8;border-left:4px solid #7ED9A6;border-radius:12px;padding:18px 20px;margin:22px 0}
+.price-alert .pa-title{font-weight:700;color:#123526;margin-bottom:6px;font-size:1rem}
+.price-alert .pa-sub{color:#4B5B50;font-size:.9rem;margin-bottom:12px}
+.price-alert .pa-form{display:flex;flex-wrap:wrap;gap:8px}
+.price-alert input[type=email]{flex:1 1 200px;min-width:0;padding:11px 14px;border:1px solid #CFE0D6;border-radius:10px;font-size:1rem}
+.price-alert .pa-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.price-alert .pa-btn{background:#1E6B43;color:#fff;border:0;border-radius:999px;padding:11px 22px;font-weight:700;font-size:.95rem;cursor:pointer}
+.price-alert .pa-btn:hover{background:#155433}
+.price-alert .pa-msg{font-size:.88rem;margin-top:10px;min-height:1em}
+.price-alert .pa-msg.ok{color:#1a7a43;font-weight:600}
+.price-alert .pa-msg.err{color:#b3261e}
 </style>
 </head>
 <body>
@@ -885,6 +896,7 @@ function showDetail(med) {
   showView("resultado");
 
   trackEvent("view_medicine", { medicine: med.name + " " + med.dose, category: med.cat, region: regionHint() });
+  window.__paMed = { name: med.name, ai: med.ai || "", dose: med.dose };
 
   /* preços só existem quando vêm de feed real (pipeline Awin) */
   var priceKeys = Object.keys(med.prices || {});
@@ -1023,6 +1035,17 @@ function showDetail(med) {
   html +=
     "<div class=\"legal-note\">&#8505; Prices shown on retailer sites. Live price comparison coming soon. Maggie Search does not provide veterinary advice.</div>";
 
+  html +=
+    "<div class=\"price-alert\" id=\"price-alert-box\">" +
+      "<div class=\"pa-title\">🔔 Get a price-drop alert</div>" +
+      "<p class=\"pa-sub\">Leave your email and we'll note that you're watching <strong>" + esc(med.name) + "</strong>. We'll let you know when it's worth checking the price again — no spam.</p>" +
+      "<div class=\"pa-form\">" +
+        "<input type=\"email\" id=\"pa-email\" placeholder=\"you@email.com\" autocomplete=\"email\">" +
+        "<input type=\"text\" id=\"pa-hp\" class=\"pa-hp\" tabindex=\"-1\" autocomplete=\"off\" aria-hidden=\"true\">" +
+        "<button type=\"button\" class=\"pa-btn\" onclick=\"subscribePriceAlert()\">Notify me</button>" +
+      "</div>" +
+      "<div class=\"pa-msg\" id=\"pa-msg\"></div>" +
+    "</div>";
   document.getElementById("res-content").innerHTML = html;
 
   /* safe click binding — no inline onclick needed */
@@ -1094,6 +1117,24 @@ function trackEvent(type, detail) {
 
 function trackSearch(query, resultsCount) {
   trackEvent("search", { query: query, results: resultsCount, region: regionHint() });
+}
+
+/* ── price-drop alert email capture (posts to /subscribe) ─── */
+function subscribePriceAlert(){
+  var email=((document.getElementById("pa-email")||{}).value||"").trim();
+  var hp=((document.getElementById("pa-hp")||{}).value||"").trim();
+  var msg=document.getElementById("pa-msg");
+  var re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if(!re.test(email)){ if(msg){msg.textContent="Please enter a valid email.";msg.className="pa-msg err";} return; }
+  var med=window.__paMed||{};
+  var produto=med.name?((med.name+" "+(med.dose||"")).trim()):null;
+  if(msg){msg.textContent="Saving…";msg.className="pa-msg";}
+  fetch("/.netlify/functions/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({email:email,produto:produto,termo:med.ai||null,website:hp})})
+  .then(function(r){return r.json();}).then(function(d){
+    if(d&&d.success){ if(msg){msg.textContent="✅ Done — we'll let you know. Thanks!";msg.className="pa-msg ok";} var e=document.getElementById("pa-email"); if(e){e.value="";} }
+    else { if(msg){msg.textContent=(d&&d.error)||"Could not subscribe. Try again.";msg.className="pa-msg err";} }
+  }).catch(function(){ if(msg){msg.textContent="Network error. Try again.";msg.className="pa-msg err";} });
 }
 
 /* ── legal + privacy modals, footer links ─────────────────── */
