@@ -789,7 +789,12 @@ function setSearchAlert(kind, html) {
 
 /* smooth-scroll to the top of the results block (list OR detail view) */
 function scrollToResults() {
-  var target = document.getElementById("main-layout");
+  var target = null;
+  var det = document.getElementById("view-resultado");
+  var lst = document.getElementById("view-lista");
+  if (det && det.offsetParent !== null) { target = document.getElementById("res-content"); }
+  else if (lst && lst.offsetParent !== null) { target = document.getElementById("grid-area"); }
+  if (!target) { target = document.getElementById("main-layout"); }
   if (!target) { return; }
   var reduce = false;
   try {
