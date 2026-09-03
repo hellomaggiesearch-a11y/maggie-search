@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maggie Search — Dashboard</title>
+<style>
+  :root{
+    --forest:#123526; --forest-deep:#0E2A1E; --mint:#7ED9A6; --amber:#D6A64B;
+    --ink:#1C2B24; --soft:#F4FCF6; --muted:#5B6B63; --line:#E2ECE6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F7FAF8;color:var(--ink);line-height:1.5}
+  .topbar{background:var(--forest-deep);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .topbar b{font-size:1.05rem}
+  .topbar .upd{margin-left:auto;font-size:.82rem;opacity:.8}
+  .topbar a{color:var(--mint);font-size:.85rem;text-decoration:none;font-weight:600}
+  .wrap{max-width:1000px;margin:0 auto;padding:22px 16px 60px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:20px}
+  .card h2{font-size:1.05rem;color:var(--forest);margin-bottom:16px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+  .tile{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+  .tile .n{font-size:1.7rem;font-weight:800;color:var(--forest)}
+  .tile .l{font-size:.78rem;color:var(--muted);margin-top:4px}
+  .bars{display:flex;align-items:flex-end;gap:3px;height:150px;overflow-x:auto;padding-top:10px}
+  .bars .b{flex:0 0 auto;width:20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+  .bars .b .bar{width:14px;background:var(--forest);border-radius:3px 3px 0 0;min-height:2px}
+  .bars .b .bar.today{background:var(--amber)}
+  .bars .b .v{font-size:.6rem;color:var(--muted);margin-bottom:2px}
+  .bars .b .d{font-size:.55rem;color:var(--muted);margin-top:3px;transform:rotate(-45deg);white-space:nowrap;height:22px}
+  .hbar{margin-bottom:9px}
+  .hbar .row{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:3px}
+  .hbar .track{background:var(--soft);border-radius:999px;height:9px;overflow:hidden}
+  .hbar .fill{background:var(--mint);height:100%;border-radius:999px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em}
+  .drop{color:#1a7a43;font-weight:700}
+  .empty{color:var(--muted);font-size:.9rem;padding:8px 0}
+  .plist{list-style:none;font-size:.85rem}
+  .plist li{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line)}
+  .plist li span:first-child{color:var(--ink);word-break:break-all;padding-right:10px}
+  /* login */
+  #login{max-width:340px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;text-align:center}
+  #login h1{font-size:1.2rem;color:var(--forest);margin-bottom:6px}
+  #login p{color:var(--muted);font-size:.85rem;margin-bottom:18px}
+  #login input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;margin-bottom:12px}
+  #login button{width:100%;padding:12px;background:var(--forest);color:#fff;border:0;border-radius:999px;font-size:1rem;font-weight:700;cursor:pointer}
+  #err{color:#b3261e;font-size:.82rem;margin-top:10px;min-height:1em}
+  @media(max-width:560px){.tiles{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <h1>🐾 Maggie Search</h1>
+  <p>Enter your dashboard password.</p>
+  <input id="pwd" type="password" placeholder="Password" autocomplete="current-password">
+  <button id="go">Sign in</button>
+  <div id="err"></div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="topbar">
+    <b>🐾 Maggie Search — Dashboard</b>
+    <span class="upd" id="upd"></span>
+    <a href="#" id="out">Sign out</a>
+  </div>
+  <div class="wrap" id="content"></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+function fmtDate(iso){ if(!iso) return '—'; const d=new Date(iso); if(isNaN(d)) return '—'; const p=n=>String(n).padStart(2,'0'); return `${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()}`; }
+function fmtUpd(iso){ const d=new Date(iso); if(isNaN(d)) return ''; const p=n=>String(n).padStart(2,'0'); return `Updated: ${p(d.getDate())}/${p(d.getMonth()+1)} ${p(d.getHours())}:${p(d.getMinutes())}`; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+async function load(pwd){
+  let r;
+  try{ r = await fetch('/.netlify/functions/painel-dados',{ headers:{ Authorization: pwd } }); }
+  catch(e){ $('err').textContent='Network error. Try again.'; return; }
+  if(r.status===401){ try{sessionStorage.removeItem('painel_pwd');}catch(e){} $('err').textContent='Wrong password.'; $('login').style.display='block'; $('app').style.display='none'; return; }
+  if(!r.ok){ $('err').textContent='Server error ('+r.status+').'; return; }
+  const d = await r.json();
+  $('login').style.display='none'; $('app').style.display='block';
+  render(d);
+}
+
+function barsChart(days){
+  if(!days || !days.length) return '<div class="empty">No data yet — first visits appear within minutes.</div>';
+  const max = Math.max(1, ...days.map(x=>x.pageviews||0));
+  const last = days.length-1;
+  return '<div class="bars">'+days.map((x,i)=>{
+    const h = Math.round(((x.pageviews||0)/max)*120);
+    return `<div class="b"><span class="v">${x.pageviews||0}</span><div class="bar ${i===last?'today':''}" style="height:${h}px"></div><span class="d">${(x.date||'').slice(5)}</span></div>`;
+  }).join('')+'</div>';
+}
+function hbars(rows, empty){
+  if(!rows || !rows.length) return `<div class="empty">${empty}</div>`;
+  const max = Math.max(1, ...rows.map(r=>r[1]));
+  return rows.map(r=>`<div class="hbar"><div class="row"><span>${esc(r[0])}</span><span>${r[1]}</span></div><div class="track"><div class="fill" style="width:${Math.round((r[1]/max)*100)}%"></div></div></div>`).join('');
+}
+
+function render(d){
+  const days = d.days||[];
+  const total = days.reduce((s,x)=>s+(x.pageviews||0),0);
+  const today = days.length?days[days.length-1].visitors||0:0;
+  const avg = days.length?(total/days.length):0;
+  const subs = d.subscribers||[];
+  $('upd').textContent = fmtUpd(d.generated_at);
+
+  let html = '';
+  // Traffic
+  html += `<div class="card"><h2>Traffic (last 30 days)</h2>
+    <div class="tiles">
+      <div class="tile"><div class="n">${total}</div><div class="l">Total pageviews</div></div>
+      <div class="tile"><div class="n">${today}</div><div class="l">Unique visitors today</div></div>
+      <div class="tile"><div class="n">${avg.toFixed(1)}</div><div class="l">Avg / day</div></div>
+    </div>${barsChart(days)}</div>`;
+  // Searches
+  html += `<div class="card"><h2>Top searched medicines</h2>${hbars(d.topSearches,'No searches recorded yet.')}</div>`;
+  // Sources
+  html += `<div class="card"><h2>Traffic sources</h2>${hbars(d.topRefs,'No referrers yet.')}</div>`;
+  // Pages
+  html += `<div class="card"><h2>Top pages</h2>`;
+  if((d.topPaths||[]).length){ html += '<ul class="plist">'+d.topPaths.map(p=>`<li><span>${esc(p[0])}</span><span>${p[1]}</span></li>`).join('')+'</ul>'; }
+  else { html += '<div class="empty">No page views yet.</div>'; }
+  html += `</div>`;
+  // Subscribers
+  html += `<div class="card"><h2>Email subscribers (${subs.length})</h2>`;
+  if(subs.length){
+    html += '<div style="overflow-x:auto"><table><tr><th>Email</th><th>Product</th><th>Price when signed up</th><th>Date</th></tr>';
+    html += subs.map(s=>{
+      const price = (typeof s.preco_na_inscricao==='number')?('£'+s.preco_na_inscricao.toFixed(2)):'—';
+      return `<tr><td>${esc(s.email)}</td><td>${esc(s.produto||s.termo||'—')}</td><td>${price}</td><td>${fmtDate(s.created_at)}</td></tr>`;
+    }).join('');
+    html += '</table></div>';
+  } else { html += '<div class="empty">No subscribers yet.</div>'; }
+  html += `</div>`;
+
+  $('content').innerHTML = html;
+}
+
+$('go').onclick = ()=>{ const p=$('pwd').value.trim(); if(!p) return; try{sessionStorage.setItem('painel_pwd',p);}catch(e){} $('err').textContent=''; load(p); };
+$('pwd').addEventListener('keydown', e=>{ if(e.key==='Enter') $('go').click(); });
+$('out').onclick = (e)=>{ e.preventDefault(); try{sessionStorage.removeItem('painel_pwd');}catch(e){} location.reload(); };
+
+(function(){ let p=null; try{p=sessionStorage.getItem('painel_pwd');}catch(e){} if(p){ load(p); } })();
+</script>
+</body>
+</html>

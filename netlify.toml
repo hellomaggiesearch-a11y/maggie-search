@@ -1,0 +1,8 @@
+# Netlify config for Maggie Search.
+# publish = "." → the repo root is the static site.
+# functions → Netlify Functions (painel: track, subscribe, painel-dados).
+[build]
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
