@@ -1,13 +1,21 @@
 import { getStore } from '@netlify/blobs';
-import { timingSafeEqual } from 'node:crypto';
+import { pbkdf2Sync, timingSafeEqual } from 'node:crypto';
 import { topN } from './_aggregate.mjs';
 
+// Password check via a committed PBKDF2-SHA256 hash — no Netlify env var needed.
+// The hash reveals nothing without the (long, random) password.
+const PWD_SALT = '7e5d3db38025eeccbf401839cb1a337e';
+const PWD_ITER = 150000;
+const PWD_HASH = 'b23da1fadaf371c5f99e2218454b06070115203864e5381757ff11f2ddb787af';
+
 function authOk(req) {
-  const pwd = process.env.PAINEL_PASSWORD;
-  if (!pwd) return false;
   const given = req.headers.get('authorization') || '';
-  const a = Buffer.from(String(given));
-  const b = Buffer.from(String(pwd));
+  if (!given) return false;
+  let h;
+  try { h = pbkdf2Sync(given, PWD_SALT, PWD_ITER, 32, 'sha256').toString('hex'); }
+  catch { return false; }
+  const a = Buffer.from(h);
+  const b = Buffer.from(PWD_HASH);
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
