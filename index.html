@@ -1181,6 +1181,6 @@ document.getElementById("btn-cookie-settings").addEventListener("click", functio
 if (!getConsent()) { showBanner(); }
 </script>
 
-<!--painel-tracker--><script>(function(){try{var b={path:location.pathname,ref:document.referrer};navigator.sendBeacon('/.netlify/functions/track',new Blob([JSON.stringify(b)],{type:'application/json'}));}catch(e){}})();</script>
+<!--painel-tracker--><script>(function(){try{if(localStorage.getItem('maggie_consent')!=='granted')return;var b={path:location.pathname,ref:document.referrer};navigator.sendBeacon('/.netlify/functions/track',new Blob([JSON.stringify(b)],{type:'application/json'}));}catch(e){}})();</script>
 </body>
 </html>
