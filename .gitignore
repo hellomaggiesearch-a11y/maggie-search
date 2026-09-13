@@ -1,1 +1,5 @@
 node_modules
+
+# Python cache
+scripts/__pycache__/
+__pycache__/
