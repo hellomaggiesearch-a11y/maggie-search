@@ -1,0 +1,36 @@
+{
+  "_comment": "Awin affiliate configuration for Maggie Search. The publisher (affiliate) ID is real and already live across the site. Merchant IDs are per-advertiser. Deep-link format used sitewide: https://www.awin1.com/pclick.php?p=<PRODUCT_ID>&a=<AWINAFFID>&m=<AWINMID>  (product-level), or https://www.awin1.com/cread.php?awinmid=<AWINMID>&awinaffid=<AWINAFFID>&ued=<DESTINATION_URL> (category/generic).",
+  "awinaffid": "2955355",
+  "impact_site_verification": "97fa0634-4442-4003-b8d5-8188a2c68f1c",
+  "merchants": {
+    "VioVet": {
+      "awinmid": "6960",
+      "url": "https://www.viovet.co.uk/",
+      "status": "approved-live"
+    },
+    "Morgan & French": {
+      "awinmid": "9897",
+      "url": "https://www.morganandfrence.co.uk/",
+      "status": "approved"
+    },
+    "Vetz Petz Antinol UK": {
+      "awinmid": "14799",
+      "url": "https://vetzpetz.co.uk/",
+      "status": "approved"
+    },
+    "YuMOVE (Lintbells)": {
+      "awinmid": "[AWINMID]",
+      "url": "https://yumove.co.uk/",
+      "status": "PENDING — apply/approve in Awin, then replace [AWINMID]"
+    },
+    "Pet Drugs Online": {
+      "awinmid": "[AWINMID]",
+      "url": "https://www.petdrugsonline.co.uk/",
+      "status": "PENDING — apply/approve in Awin, then replace [AWINMID]"
+    }
+  },
+  "deep_link_templates": {
+    "product_level": "https://www.awin1.com/pclick.php?p=[PRODUCT_ID]&a=[AWINAFFID]&m=[AWINMID]",
+    "category_or_generic": "https://www.awin1.com/cread.php?awinmid=[AWINMID]&awinaffid=[AWINAFFID]&ued=[DESTINATION_URL]"
+  }
+}
