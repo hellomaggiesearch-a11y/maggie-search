@@ -27,6 +27,14 @@
       "awinmid": "[AWINMID]",
       "url": "https://www.petdrugsonline.co.uk/",
       "status": "PENDING — apply/approve in Awin, then replace [AWINMID]"
+    },
+    "Bella + Duke": {
+      "awinmid": "111046",
+      "url": "https://www.bellaandduke.com/",
+      "status": "approved-live",
+      "commission": "GBP 10 flat per new UK customer",
+      "coupon": "AFF432 (only code allowed; other codes = rejected sale)",
+      "rules": "Sale rejected if customer cancels within 30 days. SEM and CSS not allowed. Raw food: never place on ciclosporin/Atopica, Palladia/cancer, kidney or Cushing's pages."
     }
   },
   "deep_link_templates": {
