@@ -3,10 +3,12 @@
 import { ensureSchema, londonDay, sha256Hex, json } from '../../lib/painel.js';
 
 async function authOk(request, env) {
-  const given = request.headers.get('authorization') || '';
-  if (!given || !env.PAINEL_PASSWORD) return false;
+  // trim: the dashboard's secret field is a textarea, a stray Enter must not lock you out
+  const given = (request.headers.get('authorization') || '').trim();
+  const expected = String(env.PAINEL_PASSWORD || '').trim();
+  if (!given || !expected) return false;
   // compare digests so the check takes the same time for any input
-  const [a, b] = await Promise.all([sha256Hex(given), sha256Hex(env.PAINEL_PASSWORD)]);
+  const [a, b] = await Promise.all([sha256Hex(given), sha256Hex(expected)]);
   let diff = 0;
   for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
   return diff === 0;
@@ -22,7 +24,15 @@ const pairs = (rows, key) => rows.map((r) => [r[key], r.c]);
 
 export async function onRequestGet({ request, env }) {
   if (!(await authOk(request, env))) return json({ error: 'Not authorized.' }, { status: 401 });
+  if (!env.DB) return json({ error: 'Database binding DB is missing.' }, { status: 500 });
+  try {
+    return await buildReport(env);
+  } catch (e) {
+    return json({ error: 'Database error: ' + (e && e.message ? e.message : String(e)) }, { status: 500 });
+  }
+}
 
+async function buildReport(env) {
   await ensureSchema(env.DB);
   const days = lastDays(30);
   const since = days[days.length - 1];
