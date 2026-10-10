@@ -1,0 +1,2306 @@
+{
+ "_comment": "Preços conferidos manualmente (prints/leitura de página) nas 4 farmácias. Gerado por scripts/manual_prices_from_db.py a partir de https://claude.ai/artifact/Q1JMxKy8FCDHdhkKvR9hHF. Não editar à mão.",
+ "generatedAt": "2026-10-10T17:15:15Z",
+ "products": [
+  {
+   "id": "apoquel-16mg",
+   "name": "Apoquel",
+   "strength": "16mg",
+   "form": "film-coated tablets",
+   "unit": "tablet",
+   "ai": "oclacitinib",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Skin & Allergy",
+   "checkedAt": "2026-10-10T00:00:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 2.033,
+     "price": 60.99,
+     "packQty": 30,
+     "pack": "Pack of 30",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Apoquel-Film-Coated-Tablets/c18584/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 2.0399,
+     "price": 203.99,
+     "packQty": 100,
+     "pack": "100 Film-Coated Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/apoquel-16mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 2.05,
+     "price": 2.05,
+     "packQty": 1,
+     "pack": "Price per tablet (qty 1)",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/apoquel-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 2.05,
+     "price": 2.05,
+     "packQty": 1,
+     "pack": "Price per tablet (qty 1)",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/apoquel-16mg-film-coated-tablets-for-dogs-dspn345.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "apoquel-3.6mg",
+   "name": "Apoquel",
+   "strength": "3.6mg",
+   "form": "film-coated tablets",
+   "unit": "tablet",
+   "ai": "oclacitinib",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Skin & Allergy",
+   "checkedAt": "2026-10-09T23:59:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.0999,
+     "price": 109.99,
+     "packQty": 100,
+     "pack": "Pack of 100",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Apoquel-Film-Coated-Tablets/c18584/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 1.0999,
+     "price": 109.99,
+     "packQty": 100,
+     "pack": "100 Film-Coated Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/apoquel-3-6mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.1,
+     "price": 1.1,
+     "packQty": 1,
+     "pack": "Price per tablet (qty 1)",
+     "inStock": true,
+     "url": "https://www.animed.co.uk/apoquel-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 1.12,
+     "price": 1.12,
+     "packQty": 1,
+     "pack": "Price per tablet (qty 1)",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/apoquel-3-6mg-film-coated-tablets-for-dogs-dspn343.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "apoquel-5.4mg",
+   "name": "Apoquel",
+   "strength": "5.4mg",
+   "form": "film-coated tablets",
+   "unit": "tablet",
+   "ai": "oclacitinib",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Skin & Allergy",
+   "checkedAt": "2026-10-09T23:59:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.0999,
+     "price": 109.99,
+     "packQty": 100,
+     "pack": "Pack of 100",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Apoquel-Film-Coated-Tablets/c18584/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 1.0999,
+     "price": 109.99,
+     "packQty": 100,
+     "pack": "100 Film-Coated Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/apoquel-5-4mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.1,
+     "price": 1.1,
+     "packQty": 1,
+     "pack": "Price per tablet (qty 1)",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/apoquel-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 1.12,
+     "price": 1.12,
+     "packQty": 1,
+     "pack": "Price per tablet (qty 1)",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/apoquel-5-4mg-film-coated-tablets-for-dogs-dspn344.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "inflacam-1.5mg-ml",
+   "name": "Inflacam",
+   "strength": "1.5mg/ml",
+   "form": "oral suspension (dogs)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T00:23:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.1899,
+     "price": 18.99,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Inflacam-Oral-Suspension-For-Dogs/c34852/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.1999,
+     "price": 19.99,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/inflacam-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.1849,
+     "price": 18.49,
+     "packQty": 100,
+     "pack": "100ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/inflacam-1-5mg-ml-oral-suspension-for-dogs"
+    }
+   ],
+   "notSold": [
+    "VetUK"
+   ]
+  },
+  {
+   "id": "loxicom-1.5mg-ml",
+   "name": "Loxicom",
+   "strength": "1.5mg/ml",
+   "form": "oral suspension (dogs)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T00:38:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.1499,
+     "price": 29.99,
+     "packQty": 200,
+     "pack": "Dogs 1.5mg 100ml Bottle Dual Pack (2 x 100ml)",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Loxicom-for-Dogs-Cats---Oral-Suspension/c1463/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.1444,
+     "price": 28.88,
+     "packQty": 200,
+     "pack": "2 x 100ml Bottles",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/loxicom-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.2099,
+     "price": 20.99,
+     "packQty": 100,
+     "pack": "100ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/loxicom-1-5mg-ml-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.1497,
+     "price": 29.95,
+     "packQty": 200,
+     "pack": "100ml (Twin Pack) = 2 x 100ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/loxicom-1-5mg-ml-oral-suspension-for-dogs-p-4043.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "meloxidyl-1.5mg-ml",
+   "name": "Meloxidyl",
+   "strength": "1.5mg/ml",
+   "form": "oral suspension (dogs)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T00:46:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.1299,
+     "price": 12.99,
+     "packQty": 100,
+     "pack": "Dogs 100ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Meloxidyl-Oral-Liquid-for-Dogs-and-Cats/c697/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.2198,
+     "price": 21.98,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/meloxidyl-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.3999,
+     "price": 39.99,
+     "packQty": 100,
+     "pack": "100ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/meloxidyl-1-5mg-ml-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.4318,
+     "price": 43.18,
+     "packQty": 100,
+     "pack": "100ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/meloxidyl-oral-suspension-for-dogs-p-919.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "metacam-1.5mg-ml",
+   "name": "Metacam",
+   "strength": "1.5mg/ml",
+   "form": "oral suspension (dogs)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T00:54:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.1681,
+     "price": 30.25,
+     "packQty": 180,
+     "pack": "Dog 180ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Metacam-Oral-Suspension/c5/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.1297,
+     "price": 23.35,
+     "packQty": 180,
+     "pack": "180ml bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/metacam-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.1297,
+     "price": 23.35,
+     "packQty": 180,
+     "pack": "180ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/metacam-1-5mg-ml-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.133,
+     "price": 23.94,
+     "packQty": 180,
+     "pack": "180ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/metacam-oral-suspension-for-dogs-p-148.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "rheumocam-1.5mg-ml",
+   "name": "Rheumocam",
+   "strength": "1.5mg/ml",
+   "form": "oral suspension (dogs)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T00:34:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.171,
+     "price": 34.2,
+     "packQty": 200,
+     "pack": "Oral Suspension for Dogs 200ml",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Rheumocam/c5188/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.1099,
+     "price": 21.98,
+     "packQty": 200,
+     "pack": "200ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/rheumocam-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.1249,
+     "price": 24.99,
+     "packQty": 200,
+     "pack": "200ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/rheumocam-1-5-mg-ml-oral-suspension-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.1497,
+     "price": 29.95,
+     "packQty": 200,
+     "pack": "200ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/rheumocam-1-5mg-ml-oral-suspension-for-dogs-p-45903.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "loxicom-cat-0.5mg-ml",
+   "name": "Loxicom",
+   "strength": "0.5mg/ml",
+   "form": "oral suspension (cats)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Cats"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T00:37:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.5227,
+     "price": 7.84,
+     "packQty": 15,
+     "pack": "Cats 0.5mg 15ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Loxicom-for-Dogs-Cats---Oral-Suspension/c1463/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.5193,
+     "price": 7.79,
+     "packQty": 15,
+     "pack": "15ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/loxicom-oral-suspension-for-cats"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.5327,
+     "price": 7.99,
+     "packQty": 15,
+     "pack": "15ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/catalogsearch/result/?q=loxicom"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.5527,
+     "price": 8.29,
+     "packQty": 15,
+     "pack": "15ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/loxicom-0-5mg-ml-oral-suspension-for-cats-p-9426.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "meloxidyl-cat-0.5mg-ml",
+   "name": "Meloxidyl",
+   "strength": "0.5mg/ml",
+   "form": "oral suspension (cats)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Cats"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T02:52:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.36,
+     "price": 5.4,
+     "packQty": 15,
+     "pack": "Cats 15ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Meloxidyl-Oral-Liquid-for-Dogs-and-Cats/c697/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.5993,
+     "price": 8.99,
+     "packQty": 15,
+     "pack": "15ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/meloxidyl-oral-suspension-for-cats"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.0993,
+     "price": 16.49,
+     "packQty": 15,
+     "pack": "15ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/catalogsearch/result/?q=meloxidyl"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 1.176,
+     "price": 17.64,
+     "packQty": 15,
+     "pack": "15ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=meloxicam"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "metacam-cat-0.5mg-ml",
+   "name": "Metacam",
+   "strength": "0.5mg/ml",
+   "form": "oral suspension (cats)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Cats"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.6997,
+     "price": 20.99,
+     "packQty": 30,
+     "pack": "Cats & Guinea Pigs 30ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Metacam-Oral-Suspension/c5/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.6583,
+     "price": 19.75,
+     "packQty": 30,
+     "pack": "30ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/metacam-oral-suspension-for-cats"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.6583,
+     "price": 19.75,
+     "packQty": 30,
+     "pack": "30ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/metacam-0-5mg-ml-oral-suspension-for-cats-and-guinea-pigs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.6583,
+     "price": 19.75,
+     "packQty": 30,
+     "pack": "30ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/metacam-oral-suspension-for-cats-and-guinea-pigs-p-1119.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "rheumocam-cat-0.5mg-ml",
+   "name": "Rheumocam",
+   "strength": "0.5mg/ml",
+   "form": "oral suspension (cats)",
+   "unit": "ml",
+   "ai": "meloxicam",
+   "species": [
+    "Cats"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T00:32:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.0727,
+     "price": 16.09,
+     "packQty": 15,
+     "pack": "Oral Suspension for Cats 15ml",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Rheumocam/c5188/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.3993,
+     "price": 5.99,
+     "packQty": 15,
+     "pack": "15ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/rheumocam-oral-suspension"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.5707,
+     "price": 8.56,
+     "packQty": 15,
+     "pack": "15ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/rheumocam-0-5mg-ml-oral-suspension-for-cats-p-46641.html"
+    }
+   ],
+   "notSold": [
+    "Animed Direct"
+   ]
+  },
+  {
+   "id": "canidryl-50mg",
+   "name": "Canidryl",
+   "strength": "50mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "carprofen",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T02:10:00-03:00",
+   "offers": [],
+   "notSold": [
+    "VioVet",
+    "Pet Drugs Online",
+    "Animed Direct",
+    "VetUK"
+   ]
+  },
+  {
+   "id": "carprieve-50mg",
+   "name": "Carprieve",
+   "strength": "50mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "carprofen",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T02:04:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.38,
+     "price": 0.38,
+     "packQty": 1,
+     "pack": "50mg Original (small white), priced per tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Carprieve/c66/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.29,
+     "price": 29,
+     "packQty": 100,
+     "pack": "100 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/carprieve-tablets-50mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.29,
+     "price": 0.29,
+     "packQty": 1,
+     "pack": "50mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/carprieve-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.29,
+     "price": 0.29,
+     "packQty": 1,
+     "pack": "Carprieve Norocarp Tablet 50mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=carprieve"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "rimadyl-50mg",
+   "name": "Rimadyl",
+   "strength": "50mg",
+   "form": "palatable tablets",
+   "unit": "tablet",
+   "ai": "carprofen",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T01:58:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.69,
+     "price": 0.69,
+     "packQty": 1,
+     "pack": "Palatable Tablets 50mg, priced per tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Rimadyl-for-Dogs/c4/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.48,
+     "price": 48,
+     "packQty": 100,
+     "pack": "100 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/rimadyl-palatable-tablets-50mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.48,
+     "price": 0.48,
+     "packQty": 1,
+     "pack": "50mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/rimadyl-palatable-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.48,
+     "price": 0.48,
+     "packQty": 1,
+     "pack": "Rimadyl 50mg Palatable Tablets, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=rimadyl"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "rimifin-50mg",
+   "name": "Rimifin",
+   "strength": "50mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "carprofen",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T02:20:00-03:00",
+   "offers": [],
+   "notSold": [
+    "VioVet",
+    "Pet Drugs Online",
+    "Animed Direct",
+    "VetUK"
+   ]
+  },
+  {
+   "id": "cardisure-5mg",
+   "name": "Cardisure",
+   "strength": "5mg",
+   "form": "flavoured tablets",
+   "unit": "tablet",
+   "ai": "pimobendan",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:34:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.8,
+     "price": 1.8,
+     "packQty": 1,
+     "pack": "5mg tablets » Priced per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Cardisure-for-Dogs-Tablets/c5596/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 1.03,
+     "price": 103,
+     "packQty": 100,
+     "pack": "100 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/cardisure-flavoured-tablets-for-dogs-5mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.03,
+     "price": 1.03,
+     "packQty": 1,
+     "pack": "5mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/cardisure-flavoured-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 1.2,
+     "price": 1.2,
+     "packQty": 1,
+     "pack": "5mg flavoured, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/cardisure-5mg-flavoured-tablets-for-dogs-dspn296.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "pimotab-5mg",
+   "name": "Pimotab",
+   "strength": "5mg",
+   "form": "chewable tablets",
+   "unit": "tablet",
+   "ai": "pimobendan",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:39:00-03:00",
+   "offers": [],
+   "notSold": [
+    "VioVet",
+    "Pet Drugs Online",
+    "Animed Direct",
+    "VetUK"
+   ]
+  },
+  {
+   "id": "vetmedin-5mg",
+   "name": "Vetmedin",
+   "strength": "5mg",
+   "form": "chewable tablets",
+   "unit": "tablet",
+   "ai": "pimobendan",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:32:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.8398,
+     "price": 41.99,
+     "packQty": 50,
+     "pack": "5mg Flavour Tablet » Pack of 50",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Vetmedin/c48/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.82,
+     "price": 41,
+     "packQty": 50,
+     "pack": "50 Chewable Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/vetmedin-chewable-tablets-5mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.82,
+     "price": 0.82,
+     "packQty": 1,
+     "pack": "5mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/vetmedin-chewable-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.86,
+     "price": 0.86,
+     "packQty": 1,
+     "pack": "5mg chewable, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/vetmedin-5mg-flavoured-tablets-for-dogs-dspn222.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "vetmedin-5mg-caps",
+   "name": "Vetmedin",
+   "strength": "5mg",
+   "form": "hard capsules",
+   "unit": "capsule",
+   "ai": "pimobendan",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:32:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.5899,
+     "price": 58.99,
+     "packQty": 100,
+     "pack": "5mg Capsule » Pot of 100",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Vetmedin/c48/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.6,
+     "price": 60,
+     "packQty": 100,
+     "pack": "100 Capsules",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/vetmedin-capsules-5mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.6,
+     "price": 0.6,
+     "packQty": 1,
+     "pack": "5mg Hard Capsule, price per capsule",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/catalogsearch/result/?q=vetmedin"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.59,
+     "price": 0.59,
+     "packQty": 1,
+     "pack": "5mg capsule, per capsule",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=vetmedin"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "benazecare-5mg",
+   "name": "Benazecare",
+   "strength": "5mg",
+   "form": "flavour tablets",
+   "unit": "tablet",
+   "ai": "benazepril",
+   "species": [
+    "Dogs",
+    "Cats"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:42:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.8568,
+     "price": 23.99,
+     "packQty": 28,
+     "pack": "5mg Tablets for Dogs & Cats » Box of 28",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Benazecare-Flavour-Tablets-for-Dogs-Cats/c1461/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.83,
+     "price": 23.24,
+     "packQty": 28,
+     "pack": "28 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/benazecare-flavour-tablets-5mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.83,
+     "price": 0.83,
+     "packQty": 1,
+     "pack": "5mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/benazecare-flavour-tablets"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.83,
+     "price": 0.83,
+     "packQty": 1,
+     "pack": "5mg flavoured, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=benazepril"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "benefortin-5mg",
+   "name": "Benefortin",
+   "strength": "5mg",
+   "form": "flavour tablets",
+   "unit": "tablet",
+   "ai": "benazepril",
+   "species": [
+    "Dogs",
+    "Cats"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:43:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.93,
+     "price": 0.93,
+     "packQty": 1,
+     "pack": "5mg Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Benefortin-for-Dogs-Cats/c8290/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.76,
+     "price": 21.28,
+     "packQty": 28,
+     "pack": "28 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/benefortin-tablets-5mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.76,
+     "price": 0.76,
+     "packQty": 1,
+     "pack": "5mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/benefortin-flavour-tablets"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.79,
+     "price": 0.79,
+     "packQty": 1,
+     "pack": "5mg flavoured, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=benazepril"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "fortekor-5mg",
+   "name": "Fortekor",
+   "strength": "5mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "benazepril",
+   "species": [
+    "Dogs",
+    "Cats"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:41:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.1657,
+     "price": 65.28,
+     "packQty": 56,
+     "pack": "5mg » Pack of 56",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Fortekor-Tablets-for-Dogs-Cats/c29/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.96,
+     "price": 53.76,
+     "packQty": 56,
+     "pack": "56 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/5mg-fortekor-flavour"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.15,
+     "price": 1.15,
+     "packQty": 1,
+     "pack": "5mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/fortekor-flavour-palatable-tablets"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.96,
+     "price": 0.96,
+     "packQty": 1,
+     "pack": "5mg flavoured, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=benazepril"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "kelapril-5mg",
+   "name": "Kelapril",
+   "strength": "5mg",
+   "form": "film-coated tablets (dogs and cats)",
+   "unit": "tablet",
+   "ai": "benazepril",
+   "species": [
+    "Dogs",
+    "Cats"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T03:20:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.29,
+     "price": 1.29,
+     "packQty": 1,
+     "pack": "5mg » Priced Per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Kelapril/c36172/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 1.28,
+     "price": 1.28,
+     "packQty": 1,
+     "pack": "Single tablet",
+     "inStock": null,
+     "url": "https://www.petdrugsonline.co.uk/catalogsearch/result?q=kelapril"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.2755,
+     "price": 125,
+     "packQty": 98,
+     "pack": "Pack of 98",
+     "inStock": true,
+     "url": "https://www.animed.co.uk/kelapril-5mg-tablets-for-dogs-and-cats-pack-of-98"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 1.32,
+     "price": 1.32,
+     "packQty": 1,
+     "pack": "5mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=benazepril"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "nelio-cat-5mg",
+   "name": "Nelio",
+   "strength": "5mg",
+   "form": "flavoured tablets (cats)",
+   "unit": "tablet",
+   "ai": "benazepril",
+   "species": [
+    "Cats"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T03:19:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.76,
+     "price": 0.76,
+     "packQty": 1,
+     "pack": "Cat 5mg » Priced per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Nelio-Tablets-for-Dogs-Cats/c3963/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.74,
+     "price": 0.74,
+     "packQty": 1,
+     "pack": "Single tablet",
+     "inStock": null,
+     "url": "https://www.petdrugsonline.co.uk/catalogsearch/result?q=nelio"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.19,
+     "price": 1.19,
+     "packQty": 1,
+     "pack": "5mg price per tablet",
+     "inStock": true,
+     "url": "https://www.animed.co.uk/nelio-tablets-for-cats-5mg"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.77,
+     "price": 0.77,
+     "packQty": 1,
+     "pack": "5mg for cats, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=benazepril"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "frusedale-40mg",
+   "name": "Frusedale",
+   "strength": "40mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "furosemide",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T03:08:00-03:00",
+   "offers": [],
+   "notSold": [
+    "VioVet",
+    "Pet Drugs Online",
+    "Animed Direct",
+    "VetUK"
+   ]
+  },
+  {
+   "id": "furosemide-generic-40mg",
+   "name": "Furosemide (generic)",
+   "strength": "40mg",
+   "form": "tablets (dogs and cats)",
+   "unit": "tablet",
+   "ai": "furosemide",
+   "species": [
+    "Dogs",
+    "Cats"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T03:10:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.07,
+     "price": 0.07,
+     "packQty": 1,
+     "pack": "40mg » Priced per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Furosemide-Frusemide-BP-Vet-Tablets/c92/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.07,
+     "price": 70,
+     "packQty": 1000,
+     "pack": "1000 tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/furosemide-frusemide-tablets-40mg"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.08,
+     "price": 0.08,
+     "packQty": 1,
+     "pack": "Furosemide Tablet 40mg (Millpledge), per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=furosemide"
+    }
+   ],
+   "notSold": [
+    "Animed Direct"
+   ]
+  },
+  {
+   "id": "furosoral-40mg",
+   "name": "Furosoral",
+   "strength": "40mg",
+   "form": "tablets (cats and dogs)",
+   "unit": "tablet",
+   "ai": "furosemide",
+   "species": [
+    "Dogs",
+    "Cats"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:57:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.4261,
+     "price": 42.61,
+     "packQty": 100,
+     "pack": "40mg » Pack of 100",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Furosoral-Tablets-for-Cats-Dogs/c174457/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.44,
+     "price": 44,
+     "packQty": 100,
+     "pack": "100 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/furosoral-tablets-for-cats-dogs-40mg"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.44,
+     "price": 0.44,
+     "packQty": 1,
+     "pack": "40mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=furosemide"
+    }
+   ],
+   "notSold": [
+    "Animed Direct"
+   ]
+  },
+  {
+   "id": "libeo-40mg",
+   "name": "Libeo",
+   "strength": "40mg",
+   "form": "chewable tablets",
+   "unit": "tablet",
+   "ai": "furosemide",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.45,
+     "price": 0.45,
+     "packQty": 1,
+     "pack": "40mg tablet » Priced per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Libeo/c31794/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.4,
+     "price": 48,
+     "packQty": 120,
+     "pack": "120 chewable tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/libeo-40mg-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.39,
+     "price": 0.39,
+     "packQty": 1,
+     "pack": "40mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/libeo-chewable-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.4,
+     "price": 0.4,
+     "packQty": 1,
+     "pack": "40mg chewable, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=furosemide"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "prilactone-next-10mg",
+   "name": "Prilactone Next",
+   "strength": "10mg",
+   "form": "chewable tablets",
+   "unit": "tablet",
+   "ai": "spironolactone",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.68,
+     "price": 0.68,
+     "packQty": 1,
+     "pack": "10mg » Priced Per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Prilactone-Next/c37539/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.59,
+     "price": 17.7,
+     "packQty": 30,
+     "pack": "30 Chewable Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/prilactone-next-10mg-chewable-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.59,
+     "price": 0.59,
+     "packQty": 1,
+     "pack": "10mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/prilactone-next-tablets"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.56,
+     "price": 0.56,
+     "packQty": 1,
+     "pack": "10mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=spironolactone"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "tempora-10mg",
+   "name": "Tempora",
+   "strength": "10mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "spironolactone",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Heart",
+   "checkedAt": "2026-10-10T02:52:00-03:00",
+   "offers": [],
+   "notSold": [
+    "VioVet",
+    "Pet Drugs Online",
+    "Animed Direct",
+    "VetUK"
+   ]
+  },
+  {
+   "id": "vetoryl-60mg",
+   "name": "Vetoryl",
+   "strength": "60mg",
+   "form": "hard capsules",
+   "unit": "capsule",
+   "ai": "trilostane",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Hormonal",
+   "checkedAt": "2026-10-10T02:38:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 2.6663,
+     "price": 79.99,
+     "packQty": 30,
+     "pack": "60mg » Pack of 30",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Vetoryl-Capsules/c74/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 2.66,
+     "price": 79.8,
+     "packQty": 30,
+     "pack": "30 capsules",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/vetoryl-capsules-60mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 2.66,
+     "price": 2.66,
+     "packQty": 1,
+     "pack": "60mg price per capsule",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/vetoryl-capsules-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 2.8,
+     "price": 2.8,
+     "packQty": 1,
+     "pack": "60mg, per capsule",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=vetoryl"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "leventa-1mg-ml",
+   "name": "Leventa",
+   "strength": "1mg/ml",
+   "form": "oral solution",
+   "unit": "ml",
+   "ai": "levothyroxine",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Hormonal",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.8663,
+     "price": 25.99,
+     "packQty": 30,
+     "pack": "30ml Bottle",
+     "inStock": true,
+     "url": "https://www.viovet.co.uk/Leventa-Oral-Solution-for-Dogs/c2181/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.6827,
+     "price": 20.48,
+     "packQty": 30,
+     "pack": "30ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/leventa-oral-solution-for-dogs-1ml"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.6827,
+     "price": 20.48,
+     "packQty": 30,
+     "pack": "Leventa 1mg/ml Solution for Dogs - 30ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/catalogsearch/result/?q=leventa"
+    }
+   ],
+   "notSold": [
+    "VetUK"
+   ]
+  },
+  {
+   "id": "thyforon-400mcg",
+   "name": "Thyforon",
+   "strength": "400mcg",
+   "form": "flavoured tablets",
+   "unit": "tablet",
+   "ai": "levothyroxine",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Hormonal",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.2531,
+     "price": 63.27,
+     "packQty": 250,
+     "pack": "400ug Tablet » 250 Tablets",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Thyforon-formerly-called-Forthyron-for-Dogs/c574/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.25,
+     "price": 62.5,
+     "packQty": 250,
+     "pack": "250 tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/thyforon-400-0-4mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.25,
+     "price": 0.25,
+     "packQty": 1,
+     "pack": "0.4mg (400ug) price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/thyforon-forthyron-tablets"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.25,
+     "price": 0.25,
+     "packQty": 1,
+     "pack": "400mcg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=levothyroxine"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "epiphen-60mg",
+   "name": "Epiphen",
+   "strength": "60mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "phenobarbital",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Epilepsy",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.4403,
+     "price": 79.26,
+     "packQty": 180,
+     "pack": "60mg tablets » 180 Tablets",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Epiphen/c86/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.23,
+     "price": 0.23,
+     "packQty": 1,
+     "pack": "Single tablet CD SCH3",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/epiphen-tablets-phenobarbitone-60mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.23,
+     "price": 0.23,
+     "packQty": 1,
+     "pack": "60mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/epiphen-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.23,
+     "price": 0.23,
+     "packQty": 1,
+     "pack": "60mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=phenobarbital"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "epityl-60mg",
+   "name": "Epityl",
+   "strength": "60mg",
+   "form": "flavoured tablets",
+   "unit": "tablet",
+   "ai": "phenobarbital",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Epilepsy",
+   "checkedAt": "2026-10-10T08:45:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.2797,
+     "price": 27.97,
+     "packQty": 100,
+     "pack": "60mg » Pack of 100",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Epityl-60mg-Flavoured-Tablets-for-Dogs/c76322/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.25,
+     "price": 125,
+     "packQty": 500,
+     "pack": "500 Tablets CD SCH3",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/epityl-flavoured-tablets-for-dogs-60mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.25,
+     "price": 0.25,
+     "packQty": 1,
+     "pack": "60mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/catalogsearch/result/?q=epiphen"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.25,
+     "price": 0.25,
+     "packQty": 1,
+     "pack": "60mg flavoured, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=phenobarbital"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "phenoleptil-50mg",
+   "name": "Phenoleptil",
+   "strength": "50mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "phenobarbital",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Epilepsy",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.38,
+     "price": 0.38,
+     "packQty": 1,
+     "pack": "50mg » Priced per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Phenoleptil-Tablets-for-Dogs/c3728/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.35,
+     "price": 35,
+     "packQty": 100,
+     "pack": "100 Tablets CD SCH3",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/phenoleptil-50mg"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.35,
+     "price": 0.35,
+     "packQty": 1,
+     "pack": "50mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=phenobarbital"
+    }
+   ],
+   "notSold": [
+    "Animed Direct"
+   ]
+  },
+  {
+   "id": "soliphen-60mg",
+   "name": "Soliphen",
+   "strength": "60mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "phenobarbital",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Epilepsy",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.31,
+     "price": 0.31,
+     "packQty": 1,
+     "pack": "60mg » Priced per tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Soliphen-Tablets/c48906/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.29,
+     "price": 17.4,
+     "packQty": 60,
+     "pack": "60 Tablets CD SCH3",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/soliphen-phenobarbital-tablets-for-dogs-60mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.29,
+     "price": 0.29,
+     "packQty": 1,
+     "pack": "60mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/soliphen-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.35,
+     "price": 0.35,
+     "packQty": 1,
+     "pack": "60mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=phenobarbital"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "atopica-100mg",
+   "name": "Atopica",
+   "strength": "100mg",
+   "form": "soft capsules",
+   "unit": "capsule",
+   "ai": "ciclosporin",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Skin & Allergy",
+   "checkedAt": "2026-10-10T02:36:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 7.49,
+     "price": 7.49,
+     "packQty": 1,
+     "pack": "100mg Capsules for Dogs » Priced per Capsule",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Atopica-for-Dogs-Cats/c40/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 5.6,
+     "price": 84,
+     "packQty": 15,
+     "pack": "15 Capsules",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/atopica-100mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 5.85,
+     "price": 5.85,
+     "packQty": 1,
+     "pack": "100mg price per capsule",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/atopica-capsules-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 5.6,
+     "price": 5.6,
+     "packQty": 1,
+     "pack": "100mg, per capsule",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=ciclosporin"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "cyclavance-100mg-ml",
+   "name": "Cyclavance",
+   "strength": "100mg/ml",
+   "form": "oral solution",
+   "unit": "ml",
+   "ai": "ciclosporin",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Skin & Allergy",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 4.5198,
+     "price": 225.99,
+     "packQty": 50,
+     "pack": "50ml Vial",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Cyclavance-100mgml-oral-solution-for-Dogs/c27895/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 2.9198,
+     "price": 145.99,
+     "packQty": 50,
+     "pack": "50ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/cyclavance-oral-solution-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 2.9997,
+     "price": 89.99,
+     "packQty": 30,
+     "pack": "30ml",
+     "inStock": true,
+     "url": "https://www.animed.co.uk/cyclavance-100mg-ml-oral-solution-for-dogs-and-cats"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 3.3638,
+     "price": 168.19,
+     "packQty": 50,
+     "pack": "50ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/cyclavance-100mg-ml-oral-solution-p-43604.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "sporimune-50mg-ml",
+   "name": "Sporimune",
+   "strength": "50mg/ml",
+   "form": "oral solution",
+   "unit": "ml",
+   "ai": "ciclosporin",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Skin & Allergy",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 2.9519,
+     "price": 295.19,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Sporimune-Oral-Solution-For-Dogs/c36145/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 2.5999,
+     "price": 259.99,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": false,
+     "url": "https://www.petdrugsonline.co.uk/sporimune-oral-solution-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": null,
+     "price": null,
+     "packQty": null,
+     "pack": "",
+     "inStock": false,
+     "url": "https://www.animed.co.uk/catalogsearch/result/?q=sporimune"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": null,
+     "price": null,
+     "packQty": null,
+     "pack": "",
+     "inStock": false,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=ciclosporin"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "semintra-10mg-ml",
+   "name": "Semintra",
+   "strength": "10mg/ml",
+   "form": "oral solution (cats)",
+   "unit": "ml",
+   "ai": "telmisartan",
+   "species": [
+    "Cats"
+   ],
+   "category": "Kidney",
+   "checkedAt": "2026-10-10T08:53:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 3.178,
+     "price": 111.23,
+     "packQty": 35,
+     "pack": "10mg/ml » 35ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Semintra-Oral-Solution-for-Cats/c18172/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 2.5426,
+     "price": 88.99,
+     "packQty": 35,
+     "pack": "35ml",
+     "inStock": null,
+     "url": "https://www.petdrugsonline.co.uk/catalogsearch/result?q=semintra"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 2.5426,
+     "price": 88.99,
+     "packQty": 35,
+     "pack": "35ml",
+     "inStock": true,
+     "url": "https://www.animed.co.uk/semintra-10mg-ml-oral-solution-for-cats-35ml"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 3.0737,
+     "price": 107.58,
+     "packQty": 35,
+     "pack": "35ml",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/semintra-10mg-ml-oral-solution-for-cats-35ml-bmsem03.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "semintra-4mg-ml",
+   "name": "Semintra",
+   "strength": "4mg/ml",
+   "form": "oral solution (cats)",
+   "unit": "ml",
+   "ai": "telmisartan",
+   "species": [
+    "Cats"
+   ],
+   "category": "Kidney",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.019,
+     "price": 101.9,
+     "packQty": 100,
+     "pack": "4mg/ml » 100ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Semintra-Oral-Solution-for-Cats/c18172/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 1.1327,
+     "price": 33.98,
+     "packQty": 30,
+     "pack": "30ml Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/semintra-4mg-ml-for-cats"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.9899,
+     "price": 98.99,
+     "packQty": 100,
+     "pack": "100ml",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/semintra-4mg-ml-oral-solution-for-cats"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 1.2995,
+     "price": 129.95,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/semintra-4mg-ml-oral-solution-for-cats-p-11419.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "felimazole-2.5mg",
+   "name": "Felimazole",
+   "strength": "2.5mg",
+   "form": "coated tablets (cats)",
+   "unit": "tablet",
+   "ai": "thiamazole",
+   "species": [
+    "Cats"
+   ],
+   "category": "Hormonal",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.57,
+     "price": 0.57,
+     "packQty": 1,
+     "pack": "2.5mg » Priced per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Felimazole-for-Cats/c28/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.29,
+     "price": 29,
+     "packQty": 100,
+     "pack": "100 Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/felimazole-tablets-2-5mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.36,
+     "price": 0.36,
+     "packQty": 1,
+     "pack": "2.5mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/felimazole-tablets-for-cats"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.29,
+     "price": 0.29,
+     "packQty": 1,
+     "pack": "2.5mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=thiamazole"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "thiafeline-2.5mg",
+   "name": "Thiafeline",
+   "strength": "2.5mg",
+   "form": "film-coated tablets (cats)",
+   "unit": "tablet",
+   "ai": "thiamazole",
+   "species": [
+    "Cats"
+   ],
+   "category": "Hormonal",
+   "checkedAt": "2026-10-10T09:49:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.37,
+     "price": 0.37,
+     "packQty": 1,
+     "pack": "2.5mg » Priced Per Tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Thiafeline/c36020/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.46,
+     "price": 55.2,
+     "packQty": 120,
+     "pack": "120 Film-Coated Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/thiafeline-tablets-2-5mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.35,
+     "price": 0.35,
+     "packQty": 1,
+     "pack": "2.5mg — por comprimido (quantidade livre)",
+     "inStock": true,
+     "url": "https://www.animed.co.uk/thiafeline-tablet"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.31,
+     "price": 0.31,
+     "packQty": 1,
+     "pack": "2.5mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/catalogsearch/result/?q=thiamazole"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "thyronorm-5mg-ml",
+   "name": "Thyronorm",
+   "strength": "5mg/ml",
+   "form": "oral solution (cats)",
+   "unit": "ml",
+   "ai": "thiamazole",
+   "species": [
+    "Cats"
+   ],
+   "category": "Hormonal",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 0.4842,
+     "price": 48.42,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Thyronorm-5-mgml-Oral-Solution-for-Cats/c34867/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 0.4645,
+     "price": 46.45,
+     "packQty": 100,
+     "pack": "100ml - Bottle",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/thyronorm-5mg-ml-oral-solution-for-cats"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 0.4645,
+     "price": 46.45,
+     "packQty": 100,
+     "pack": "100ml",
+     "inStock": true,
+     "url": "https://www.animed.co.uk/thyronorm-5mg-ml-oral-solution-for-cats"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 0.4675,
+     "price": 46.75,
+     "packQty": 100,
+     "pack": "100ml Bottle",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/thyronorm-5mg-ml-oral-solution-for-cats-p-40232.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "palladia-50mg",
+   "name": "Palladia",
+   "strength": "50mg",
+   "form": "film-coated tablets",
+   "unit": "tablet",
+   "ai": "toceranib",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Cancer",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 20.299,
+     "price": 405.98,
+     "packQty": 20,
+     "pack": "50mg » Pack of 20",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Palladia-Tablets-for-Dogs/c3957/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 18.2345,
+     "price": 364.69,
+     "packQty": 20,
+     "pack": "20 Film-Coated Tablets",
+     "inStock": true,
+     "url": "https://www.petdrugsonline.co.uk/palladia-50-mg-film-coated-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 20.99,
+     "price": 20.99,
+     "packQty": 1,
+     "pack": "50mg price per tablet",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/palladia-tablets-for-dogs"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 21.67,
+     "price": 21.67,
+     "packQty": 1,
+     "pack": "50mg, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/palladia-50mg-film-coated-tablets-for-dogs-dspn361.html"
+    }
+   ],
+   "notSold": []
+  },
+  {
+   "id": "galliprant-60mg",
+   "name": "Galliprant",
+   "strength": "60mg",
+   "form": "tablets",
+   "unit": "tablet",
+   "ai": "grapiprant",
+   "species": [
+    "Dogs"
+   ],
+   "category": "Anti-inflammatory",
+   "checkedAt": "2026-10-10T02:50:00-03:00",
+   "offers": [
+    {
+     "pharmacy": "VioVet",
+     "unitPrice": 1.76,
+     "price": 1.76,
+     "packQty": 1,
+     "pack": "60mg » Priced per tablet",
+     "inStock": null,
+     "url": "https://www.viovet.co.uk/Galliprant-Tablets-for-Dogs/c45830/"
+    },
+    {
+     "pharmacy": "Pet Drugs Online",
+     "unitPrice": 1.66,
+     "price": 49.8,
+     "packQty": 30,
+     "pack": "30 tablets",
+     "inStock": false,
+     "url": "https://www.petdrugsonline.co.uk/galliprant-60mg"
+    },
+    {
+     "pharmacy": "Animed Direct",
+     "unitPrice": 1.683,
+     "price": 50.49,
+     "packQty": 30,
+     "pack": "Pack of 30",
+     "inStock": null,
+     "url": "https://www.animed.co.uk/catalogsearch/result/?q=galliprant"
+    },
+    {
+     "pharmacy": "VetUK",
+     "unitPrice": 1.66,
+     "price": 1.66,
+     "packQty": 1,
+     "pack": "60mg flavoured, per tablet",
+     "inStock": true,
+     "url": "https://www.vetuk.co.uk/galliprant-60mg-flavoured-tablets-for-dogs-dspn290.html"
+    }
+   ],
+   "notSold": []
+  }
+ ]
+}

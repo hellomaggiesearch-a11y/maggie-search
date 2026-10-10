@@ -195,6 +195,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .price-btn{width:100%;margin-top:10px;background:var(--g1);color:#fff;border:none;border-radius:8px;padding:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
 .price-btn:hover{background:var(--g0);}
 .legal-note{background:var(--g5);border:0.5px solid var(--g4);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--text2);line-height:1.6;}
+/* ranked price list (hand-checked Rx prices) */
+.card-unit{font-size:11px;font-weight:500;color:var(--text3);}
+.card-meta{font-size:10px;color:var(--text3);margin-top:3px;}
+.card-oos{font-size:12px;color:var(--text3);}
+.rank-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.rank-row{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:14px 16px;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:6px 14px;align-items:center;}
+.rank-row.best{border-color:var(--g2);background:linear-gradient(135deg,#F4FCF6,#fff);}
+.rank-row.oos{opacity:.72;}
+.rank-pos{width:28px;height:28px;border-radius:50%;background:var(--g5);color:var(--g1);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.rank-row.best .rank-pos{background:var(--g1);color:#fff;}
+.rank-store{font-size:14px;font-weight:600;color:var(--text);}
+.rank-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;margin-left:6px;vertical-align:1px;}
+.rank-tag.cheap{background:var(--g5);color:var(--g1);}
+.rank-tag.oos{background:#FEE2E2;color:#991B1B;}
+.rank-pack{font-size:12px;color:var(--text2);margin-top:2px;}
+.rank-price{text-align:right;}
+.rank-unit{font-size:20px;font-weight:700;color:var(--g1);white-space:nowrap;}
+.rank-unit small{font-size:11px;font-weight:500;color:var(--text3);}
+.rank-diff{font-size:11px;font-weight:600;color:var(--red);}
+.rank-diff.ok{color:var(--g1);}
+.rank-row .price-btn{grid-column:2 / -1;margin-top:4px;}
+.rank-row .price-btn.alt-store{background:var(--white);color:var(--g1);border:1.5px solid var(--g2);}
+.rank-row .price-btn.alt-store:hover{background:var(--g5);}
+.rank-none{font-size:12px;color:var(--text3);margin:-4px 0 16px;}
+.cheaper-alt{background:#ECFDF3;border:1px solid var(--g2);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--text);margin-bottom:14px;line-height:1.5;}
+.cheaper-alt button{background:none;border:none;color:var(--g1);font-weight:700;text-decoration:underline;cursor:pointer;font:inherit;padding:0;}
+.alt-from{font-size:12px;font-weight:600;color:var(--g1);margin:4px 0;}
+@media (max-width:520px){.rank-row{grid-template-columns:24px minmax(0,1fr);}.rank-price{grid-column:2;text-align:left;}.rank-row .price-btn{grid-column:1 / -1;}}
 .back-btn{background:var(--g5);color:var(--g1);border:0.5px solid var(--g4);border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;margin-bottom:12px;}
 .back-btn:hover{background:var(--g4);}
 @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.03);}}
@@ -299,15 +327,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
     <div class="trust-badges">
       <span>✅ VMD Authorised</span>
-      <span>🔎 Prices shown on retailer sites — live comparison coming soon</span>
+      <span>🔎 Prescription prices checked by hand at 4 UK pharmacies</span>
       <span>✅ 100% free</span>
     </div>
   </div>
   <div class="stats-section">
     <div class="stats-grid">
       <div class="stat">
-        <div class="stat-num">29</div>
-        <div class="stat-label">Medicines listed</div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">UK pharmacies compared</div>
       </div>
       <div class="stat">
         <div class="stat-num">24</div>
@@ -343,6 +371,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <button class="sb-chip" onclick="filterByCategory('Antiparasitic',this)">🐛 Antiparasitic</button>
       <button class="sb-chip" onclick="filterByCategory('Anti-inflammatory',this)">🔥 Anti-inflammatory</button>
       <button class="sb-chip" onclick="filterByCategory('Digestive',this)">🫃 Digestive</button>
+      <button class="sb-chip" onclick="filterByCategory('Heart',this)">❤️ Heart</button>
+      <button class="sb-chip" onclick="filterByCategory('Skin &amp; Allergy',this)">🩹 Skin &amp; Allergy</button>
+      <button class="sb-chip" onclick="filterByCategory('Hormonal',this)">🧪 Thyroid &amp; Hormonal</button>
+      <button class="sb-chip" onclick="filterByCategory('Epilepsy',this)">⚡ Epilepsy</button>
+      <button class="sb-chip" onclick="filterByCategory('Kidney',this)">💧 Kidney</button>
+      <button class="sb-chip" onclick="filterByCategory('Cancer',this)">🎗️ Cancer</button>
     </div>
     <div class="sb-section">
       <div class="sb-title">Pharmacies</div>
@@ -753,18 +787,39 @@ function renderMeds(meds) {
   var icons = {
     "Antiparasitic":      "🐛",
     "Anti-inflammatory":  "🔥",
-    "Digestive":          "🫃"
+    "Digestive":          "🫃",
+    "Heart":              "❤️",
+    "Skin & Allergy":     "🩹",
+    "Hormonal":           "🧪",
+    "Epilepsy":           "⚡",
+    "Kidney":             "💧",
+    "Cancer":             "🎗️"
   };
 
   var grid = document.getElementById("grid-area");
   grid.innerHTML = "";
 
   meds.forEach(function (m) {
-    /* preço só aparece quando vier de feed real — nunca inventado */
+    /* preço só aparece quando vier de feed real ou de conferência datada — nunca inventado */
     var pvals = Object.values(m.prices || {});
-    var priceHtml = pvals.length
-      ? "<div class=\"card-preco\">£" + Math.min.apply(null, pvals).toFixed(2) + "</div>"
-      : "<div class=\"card-check\">Check today's price &rarr;</div>";
+    var priceHtml;
+    if (m.offers && m.offers.length) {
+      var nSell = m.offers.length;
+      priceHtml = pvals.length
+        ? "<div class=\"card-preco\">from £" + fmtUnit(Math.min.apply(null, pvals)) +
+            " <span class=\"card-unit\">/ " + m.unit + "</span></div>" +
+          "<div class=\"card-meta\">" + nSell + " pharmac" + (nSell === 1 ? "y" : "ies") +
+            " &middot; checked " + m.checked + "</div>"
+        : "<div class=\"card-oos\">Out of stock when checked</div>";
+    } else if (m.offers) {
+      priceHtml = (m.notSold && m.notSold.length)
+        ? "<div class=\"card-oos\">Not sold online &mdash; see equivalents &rarr;</div>"
+        : "<div class=\"card-check\">Check today's price &rarr;</div>";
+    } else {
+      priceHtml = pvals.length
+        ? "<div class=\"card-preco\">£" + Math.min.apply(null, pvals).toFixed(2) + "</div>"
+        : "<div class=\"card-check\">Check today's price &rarr;</div>";
+    }
     var card = document.createElement("div");
     card.className = "card";
     card.setAttribute("role", "button");
@@ -772,7 +827,7 @@ function renderMeds(meds) {
     card.innerHTML =
       "<div class=\"card-ico\">"   + (icons[m.cat] || "💊") + "</div>" +
       "<div class=\"card-nome\">"  + m.name            + "</div>" +
-      "<div class=\"card-pa\">"    + m.dose             + "</div>" +
+      "<div class=\"card-pa\">"    + m.dose + (m.form ? " &middot; " + m.form : "") + "</div>" +
       (m.ai ? "<div class=\"card-ai\">" + m.ai + "</div>" : "") +
       priceHtml;
 
@@ -784,6 +839,11 @@ function renderMeds(meds) {
   });
 
   document.getElementById("count-badge").textContent = meds.length + " medicines";
+}
+
+/* unit price (£ per tablet/ml) — 2 decimals, never "0.00" for cheap items */
+function fmtUnit(v) {
+  return v < 0.1 ? v.toFixed(3).replace(/0$/, "") : v.toFixed(2);
 }
 
 /* ── search feedback alert ────────────────────────────────── */
@@ -910,9 +970,121 @@ function filterByCategory(cat, btn) {
 
 function applyFilters() {
   var filtered = medicinesData;
-  if (currentSpecies  !== "All") { filtered = filtered.filter(function (m) { return m.sp  === currentSpecies;  }); }
+  if (currentSpecies  !== "All") {
+    filtered = filtered.filter(function (m) {
+      return m.sps ? m.sps.indexOf(currentSpecies) !== -1 : m.sp === currentSpecies;
+    });
+  }
   if (currentCategory !== "All") { filtered = filtered.filter(function (m) { return m.cat === currentCategory; }); }
   renderMeds(filtered);
+}
+
+/* ── ranked price list (hand-checked prices) ──────────────── */
+function minUnit(m) {
+  var v = Object.values(m.prices || {});
+  return v.length ? Math.min.apply(null, v) : null;
+}
+
+function unitPlural(unit, n) {
+  return n === 1 || unit === "ml" ? unit : unit + "s";
+}
+
+/* Ordem: com estoque e preço (mais barato primeiro) → sem estoque → sem preço.
+   Todas as farmácias que vendem ganham botão, pagando comissão ou não. */
+function renderRanked(med, alts) {
+  var offers = med.offers.slice();
+  function key(o) {
+    return (o.inStock === false ? 2e6 : 0) + (o.unitPrice == null ? 1e6 : o.unitPrice);
+  }
+  offers.sort(function (a, b) { return key(a) - key(b); });
+
+  var live = offers.filter(function (o) { return o.unitPrice != null && o.inStock !== false; });
+  var best  = live.length ? live[0].unitPrice : null;
+  var worst = live.length ? live[live.length - 1].unitPrice : null;
+  var html = "";
+
+  /* equivalente mais barato (mesmo princípio ativo e dose) */
+  var cheaper = null;
+  alts.forEach(function (a) {
+    var u = minUnit(a);
+    if (u != null && (best == null || u < best * 0.97) && (!cheaper || u < minUnit(cheaper))) { cheaper = a; }
+  });
+  if (cheaper) {
+    html +=
+      "<div class=\"cheaper-alt\">💡 <strong>Cheaper equivalent:</strong> " +
+        esc(cheaper.name) + " " + esc(cheaper.dose) + (cheaper.form ? " (" + esc(cheaper.form) + ")" : "") +
+        " from <strong>£" + fmtUnit(minUnit(cheaper)) + " / " + cheaper.unit + "</strong>" +
+        (best != null ? " vs £" + fmtUnit(best) + " here" : "") +
+        " &mdash; same active ingredient and strength. " +
+        "<button type=\"button\" class=\"alt-btn\" data-alt=\"" + alts.indexOf(cheaper) + "\">Compare it &rarr;</button>" +
+        " Ask your vet before switching brands." +
+      "</div>";
+  }
+
+  if (live.length > 1 && worst > best * 1.05) {
+    html +=
+      "<div class=\"res-aviso\"><span>💰 The most expensive pharmacy charges <strong>" +
+        Math.round((worst / best - 1) * 100) + "% more</strong> than the cheapest for this same medicine.</span></div>";
+  }
+
+  html +=
+    "<h3 style=\"margin-bottom:4px;font-size:14px;font-weight:600\">Prices at UK pharmacies &mdash; cheapest first</h3>" +
+    "<div class=\"rank-none\" style=\"margin:0 0 10px\">Price per " + med.unit +
+      ", using each pharmacy&rsquo;s best-value pack. Checked by hand on " + med.checked + ".</div>";
+
+  if (!offers.length) {
+    html += "<div class=\"res-aviso\"><span>We couldn&rsquo;t find <strong>" + esc(med.name) + " " + esc(med.dose) +
+      "</strong> for sale at VioVet, Pet Drugs Online, Animed Direct or VetUK when we last checked" +
+      (med.checked ? " (" + med.checked + ")" : "") + ". See the equivalents below.</span></div>";
+  }
+
+  html += "<div class=\"rank-list\">";
+  offers.forEach(function (o, i) {
+    var oos   = o.inStock === false;
+    var isBest = !oos && o.unitPrice != null && o.unitPrice === best;
+    var pack;
+    if (o.unitPrice == null) {
+      pack = "Price not shown on the pharmacy&rsquo;s site";
+    } else if (o.packQty === 1) {
+      pack = "Sold per " + med.unit + " &mdash; buy the exact quantity you need";
+    } else {
+      pack = "Best value: £" + o.price.toFixed(2) + " for " + o.packQty + " " + unitPlural(med.unit, o.packQty);
+    }
+    var diff = "";
+    if (isBest) {
+      diff = "<div class=\"rank-diff ok\">&#10003; Cheapest</div>";
+    } else if (!oos && o.unitPrice != null && best != null) {
+      var pct = Math.round((o.unitPrice / best - 1) * 100);
+      diff = pct > 0 ? "<div class=\"rank-diff\">+" + pct + "% vs cheapest</div>"
+                     : "<div class=\"rank-diff ok\">Same as cheapest</div>";
+    }
+    html +=
+      "<div class=\"rank-row" + (isBest ? " best" : "") + (oos ? " oos" : "") + "\">" +
+        "<div class=\"rank-pos\">" + (i + 1) + "</div>" +
+        "<div>" +
+          "<div class=\"rank-store\">" + esc(o.pharmacy) +
+            (oos ? "<span class=\"rank-tag oos\">Out of stock when checked</span>" : "") +
+          "</div>" +
+          "<div class=\"rank-pack\">" + pack + "</div>" +
+        "</div>" +
+        "<div class=\"rank-price\">" +
+          (o.unitPrice != null
+            ? "<div class=\"rank-unit\">£" + fmtUnit(o.unitPrice) + " <small>/ " + med.unit + "</small></div>"
+            : "") +
+          diff +
+        "</div>" +
+        (o.link
+          ? "<button class=\"price-btn\" data-ph=\"" + esc(o.pharmacy) + "\" data-url=\"" + esc(o.link) + "\">" +
+              (oos ? "Check stock at " : "Buy at ") + esc(o.pharmacy) + " &rarr;</button>"
+          : "") +
+      "</div>";
+  });
+  html += "</div>";
+
+  if (med.notSold && med.notSold.length && offers.length) {
+    html += "<div class=\"rank-none\">Not sold at: " + med.notSold.map(esc).join(", ") + ".</div>";
+  }
+  return html;
 }
 
 /* ── detail view — equivalence comparator ─────────────────── */
@@ -936,7 +1108,18 @@ function showDetail(med) {
   var onSiteAlts = [];
   if (med.ai) {
     onSiteAlts = medicinesData.filter(function (m) {
-      return m.ai === med.ai && m.dose === med.dose && m.name !== med.name;
+      if (m === med || m.ai !== med.ai || m.dose !== med.dose) { return false; }
+      /* espécie: o equivalente tem de servir para todas as espécies do remédio
+         da receita (Nelio só-gato nunca aparece como troca do Kelapril cão+gato) */
+      if (m.sps && med.sps && !med.sps.every(function (s) { return m.sps.indexOf(s) !== -1; })) { return false; }
+      /* itens conferidos: compara por id (Vetmedin comprimido x cápsula);
+         demais: regra antiga, por nome */
+      return (m.id && med.id) ? m.id !== med.id : m.name !== med.name;
+    });
+    /* com preço primeiro, do mais barato por unidade ao mais caro */
+    onSiteAlts.sort(function (a, b) {
+      var ua = minUnit(a), ub = minUnit(b);
+      return (ua == null ? Infinity : ua) - (ub == null ? Infinity : ub);
     });
   }
 
@@ -971,7 +1154,10 @@ function showDetail(med) {
       "<span><strong>Always use your vet prescription.</strong> A valid UK vet prescription is required for prescription medicines.</span>" +
     "</div>";
 
-  if (hasPrices) {
+  if (med.offers) {
+    /* preços conferidos à mão: lista completa, do mais barato ao mais caro */
+    html += renderRanked(med, onSiteAlts);
+  } else if (hasPrices) {
     /* caminho de feed real — volta automaticamente quando o Awin entregar preços */
     var prices  = priceKeys.map(function (ph) { return med.prices[ph]; });
     var best    = Math.min.apply(null, prices);
@@ -1033,9 +1219,12 @@ function showDetail(med) {
         "<div class=\"alt-grid\">";
 
     onSiteAlts.forEach(function (alt, i) {
+      var au = minUnit(alt);
       html +=
         "<div class=\"alt-card\">" +
-          "<div class=\"alt-name\">" + alt.name + " " + alt.dose + "</div>" +
+          "<div class=\"alt-name\">" + alt.name + " " + alt.dose + (alt.form ? " &middot; " + alt.form : "") + "</div>" +
+          (au != null && alt.unit
+            ? "<div class=\"alt-from\">from £" + fmtUnit(au) + " / " + alt.unit + "</div>" : "") +
           "<div class=\"alt-badge\">💬 " + aiUiCopy.badge + "</div>" +
           "<button class=\"alt-btn\" data-alt=\"" + i + "\">View this equivalent &rarr;</button>" +
         "</div>";
@@ -1056,8 +1245,13 @@ function showDetail(med) {
       "</div>";
   }
 
-  html +=
-    "<div class=\"legal-note\">&#8505; Prices shown on retailer sites. Live price comparison coming soon. Maggie Search does not provide veterinary advice.</div>";
+  html += med.offers
+    ? "<div class=\"legal-note\">&#8505; Prices checked by hand on " + (med.checked || "a recent date") +
+        " on each pharmacy&rsquo;s own website, using its best-value pack size. Prices and stock change &mdash; " +
+        "the price at the pharmacy&rsquo;s checkout is final. We earn a commission only on VioVet links; " +
+        "we link to the other pharmacies too, at no extra cost to you, because the cheapest option comes first. " +
+        "Maggie Search does not provide veterinary advice.</div>"
+    : "<div class=\"legal-note\">&#8505; Prices shown on retailer sites. Live price comparison coming soon. Maggie Search does not provide veterinary advice.</div>";
 
   html +=
     "<div class=\"price-alert\" id=\"price-alert-box\">" +
@@ -1076,6 +1270,8 @@ function showDetail(med) {
   document.querySelectorAll("#res-content .price-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var url = this.getAttribute("data-url");
+      var ph  = this.getAttribute("data-ph");
+      if (ph) { trackEvent("buy_click", { medicine: med.name + " " + med.dose, pharmacy: ph }); }
       if (url && url !== "#") { window.open(url, "_blank", "noopener,noreferrer"); }
     });
   });

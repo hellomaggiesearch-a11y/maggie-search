@@ -212,6 +212,85 @@ def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH,
           f"{n_priced} com preço do feed")
     return out
 
+# ── Preços conferidos à mão (data/manual_prices.json) ───────────
+# Remédios de receita não vêm no feed Awin. Estes preços foram conferidos
+# por print/leitura de página nas 4 farmácias e têm data. Passado o prazo
+# MANUAL_STALE_DAYS sem nova conferência, o preço some do site (volta o botão
+# "Check today's price") — nunca mostrar preço velho como se fosse de hoje.
+MANUAL_PRICES_PATH = "data/manual_prices.json"
+MANUAL_STALE_DAYS  = 14
+AWIN_AFFID         = "2955355"
+AFFILIATE_MIDS     = {"VioVet": "6960"}  # só quem paga comissão vira link Awin
+
+def buy_link(pharmacy: str, url: str, product_id: str) -> str:
+    """Link do botão de compra. Afiliado (Awin) só onde há programa aprovado;
+    nas outras farmácias, link direto — aparece igual, mesmo sem comissão."""
+    mid = AFFILIATE_MIDS.get(pharmacy)
+    if not mid or not url:
+        return url
+    from urllib.parse import quote
+    return ("https://www.awin1.com/cread.php?awinmid=" + mid +
+            "&awinaffid=" + AWIN_AFFID +
+            "&clickref=comparator-" + quote(product_id, safe="") +
+            "&ued=" + quote(url, safe=""))
+
+def load_manual_products(path: str = MANUAL_PRICES_PATH,
+                         today: datetime | None = None) -> list[dict]:
+    if not os.path.exists(path):
+        print(f"  [AVISO] {path} não encontrado — sem preços conferidos")
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        raw = json.load(f)
+    today = today or datetime.utcnow()
+
+    out, n_stale = [], 0
+    for p in raw.get("products", []):
+        checked = p.get("checkedAt")
+        checked_dt = None
+        if checked:
+            checked_dt = datetime.fromisoformat(checked).replace(tzinfo=None)
+        stale = (checked_dt is None or (today - checked_dt).days > MANUAL_STALE_DAYS)
+
+        offers = []
+        for o in p.get("offers", []):
+            o = dict(o)
+            o["link"] = buy_link(o["pharmacy"], o.get("url", ""), p["id"])
+            o["affiliate"] = o["pharmacy"] in AFFILIATE_MIDS
+            o.pop("url", None)
+            offers.append(o)
+        if stale:
+            n_stale += 1
+            offers = []  # sem preço; `offers: null` abaixo → UI volta ao "Check price"
+
+        # `prices` = menor preço POR UNIDADE em cada farmácia com estoque —
+        # é o que o card usa para o "from £x". O detalhe usa `offers`.
+        prices = {o["pharmacy"]: o["unitPrice"] for o in offers
+                  if o.get("unitPrice") and o.get("inStock") is not False}
+        check = next((o["link"] for o in offers if o["pharmacy"] == "VioVet"),
+                     viovet_check_url(p["name"]))
+        species = p.get("species") or ["Dogs"]
+        out.append({
+            "id":      p["id"],
+            "name":    p["name"],
+            "ai":      p.get("ai", ""),
+            "dose":    p.get("strength", ""),
+            "form":    p.get("form", ""),
+            "unit":    p.get("unit", "tablet"),
+            "cat":     p.get("category", "Other"),
+            "sp":      species[0] if len(species) == 1 else "Dogs & Cats",
+            "sps":     species,
+            "prices":  prices,
+            "links":   {},
+            "check":   check,
+            "offers":  None if stale else offers,
+            "notSold": p.get("notSold", []) if not stale else [],
+            "checked": (f"{checked_dt.day} {checked_dt.strftime('%b %Y')}"
+                        if checked_dt and not stale else ""),
+        })
+    print(f"  → {len(out)} remédios com preço conferido ({n_stale} vencidos > "
+          f"{MANUAL_STALE_DAYS} dias, sem preço)")
+    return out
+
 def get_feed_list() -> list[dict]:
     """Baixa a lista de datafeeds do publisher (Create-a-Feed list).
 
@@ -324,9 +403,17 @@ def build_medicines_data() -> list[dict]:
 
     medicines_out = []
 
+    # Preços conferidos à mão vêm primeiro e substituem o item sem preço do
+    # MEDICINES_LOOKUP de mesmo nome+dose (ex.: Apoquel 16mg, Metacam 1.5mg/ml).
+    manual = load_manual_products()
+    medicines_out.extend(manual)
+    manual_keys = {(m["name"].lower(), m["dose"].lower()) for m in manual}
+
     for med_def in MEDICINES_LOOKUP:
         name = med_def["name"]
         for dose in med_def["doses"]:
+            if (name.lower(), dose.lower()) in manual_keys:
+                continue
             prices = {}
             links  = {}
 
@@ -363,6 +450,10 @@ def medicines_to_js(medicines: list[dict]) -> str:
     lines.append("var medicinesData = [")
 
     for m in medicines:
+        if "offers" in m:
+            # itens com preço conferido: JSON (campos extras: offers, unit…)
+            lines.append("  " + json.dumps(m, ensure_ascii=False) + ",")
+            continue
         prices_js = ", ".join(
             f'"{ph}": {pr:.2f}'
             for ph, pr in m["prices"].items()
