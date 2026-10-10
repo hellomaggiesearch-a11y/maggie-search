@@ -31,6 +31,9 @@ export async function onRequestPost({ request, env }) {
 
   try {
     await ensureSchema(env.DB);
+    // privacy policy: sign-ups are deleted 24 months after sign-up at the latest
+    await env.DB.prepare('DELETE FROM subscribers WHERE created_at < ?')
+      .bind(new Date(Date.now() - 730 * 864e5).toISOString()).run();
     await env.DB.prepare(
       'INSERT INTO subscribers (email, produto, termo, preco_na_inscricao, created_at) VALUES (?, ?, ?, ?, ?)'
     ).bind(

@@ -4,6 +4,7 @@ import { ensureSchema, londonDay, sha256Hex, normalizeRefHost, clientIp } from '
 
 const SELF_HOST = 'maggiesearch.co.uk';
 const RETENTION_DAYS = 120;
+const SUBSCRIBER_RETENTION_DAYS = 730;
 
 export async function onRequestPost({ request, env }) {
   let body;
@@ -32,6 +33,9 @@ export async function onRequestPost({ request, env }) {
       const cutoff = londonDay(new Date(Date.now() - RETENTION_DAYS * 864e5));
       stmts.push(env.DB.prepare('DELETE FROM pageviews WHERE day < ?').bind(cutoff));
       stmts.push(env.DB.prepare('DELETE FROM searches WHERE day < ?').bind(cutoff));
+      // privacy policy: alert sign-ups are deleted 24 months after sign-up at the latest
+      const subCutoff = new Date(Date.now() - SUBSCRIBER_RETENTION_DAYS * 864e5).toISOString();
+      stmts.push(env.DB.prepare('DELETE FROM subscribers WHERE created_at < ?').bind(subCutoff));
     }
     await env.DB.batch(stmts);
   } catch { /* analytics must never break the page */ }

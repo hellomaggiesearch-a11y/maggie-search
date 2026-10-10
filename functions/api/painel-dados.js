@@ -34,6 +34,15 @@ export async function onRequestGet({ request, env }) {
 
 async function buildReport(env) {
   await ensureSchema(env.DB);
+  // privacy policy retention, enforced whenever the dashboard is opened too
+  await env.DB.batch([
+    env.DB.prepare('DELETE FROM subscribers WHERE created_at < ?')
+      .bind(new Date(Date.now() - 730 * 864e5).toISOString()),
+    env.DB.prepare('DELETE FROM pageviews WHERE day < ?')
+      .bind(londonDay(new Date(Date.now() - 120 * 864e5))),
+    env.DB.prepare('DELETE FROM searches WHERE day < ?')
+      .bind(londonDay(new Date(Date.now() - 120 * 864e5))),
+  ]);
   const days = lastDays(30);
   const since = days[days.length - 1];
 
