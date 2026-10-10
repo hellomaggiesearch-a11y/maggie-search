@@ -180,26 +180,37 @@ def load_viovet_products(path: str = VIOVET_PRODUCTS_PATH,
         if flag == "ATENCAO_GATO":               # trava de segurança dura
             targets = [t for t in targets if t != "Cats"] or ["Dogs"]
 
-        # anti-colisão: nunca deixar (ai,dose) iguais apontarem p/ chaves ≠
-        if ai:
-            k = (ai, dose)
-            if k in seen_group_keys and seen_group_keys[k] != chave:
-                raise SystemExit(
-                    f"[ERRO] Colisão de agrupamento (ai,dose)={k}: chaves "
-                    f"distintas {seen_group_keys[k]!r} vs {chave!r} — "
-                    f"cruzaria produtos NÃO equivalentes. Abortando.")
-            seen_group_keys[k] = chave
-
         # preço do feed (ID exato). Ausente hoje → cai no botão "Check price".
         price  = price_by_id.get(pid)
         prices = {"VioVet": price} if price else {}
         links  = {"VioVet": link} if price else {}
 
         for sp in targets:
+            # Produto dual comparável (ex.: Droncit 50mg): em cada filtro ele
+            # agrupa com os equivalentes DAQUELA espécie ("Dog · 50mg" no de
+            # cães, "Cat · 50mg" no de gatos), não num rótulo "Dog & Cat".
+            dose_sp, chave_sp = dose, chave
+            if ai and especie == "Cão e Gato" and sp in ("Dogs", "Cats"):
+                sp_pt = "Cão" if sp == "Dogs" else "Gato"
+                parts = chave.split("|")
+                if len(parts) >= 3:
+                    chave_sp = "|".join([parts[0], sp_pt] + parts[2:])
+                dose_sp = _viovet_dose_label(sp_pt, chave_sp, "", "", True)
+
+            # anti-colisão: nunca deixar (ai,dose) iguais apontarem p/ chaves ≠
+            if ai:
+                k = (ai, dose_sp)
+                if k in seen_group_keys and seen_group_keys[k] != chave_sp:
+                    raise SystemExit(
+                        f"[ERRO] Colisão de agrupamento (ai,dose)={k}: chaves "
+                        f"distintas {seen_group_keys[k]!r} vs {chave_sp!r} — "
+                        f"cruzaria produtos NÃO equivalentes. Abortando.")
+                seen_group_keys[k] = chave_sp
+
             out.append({
                 "name":   nome,
                 "ai":     ai,
-                "dose":   dose,
+                "dose":   dose_sp,
                 "cat":    cat,
                 "sp":     sp,
                 "prices": prices,
