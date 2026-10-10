@@ -77,7 +77,7 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;',
 
 async function load(pwd){
   let r;
-  try{ r = await fetch('/.netlify/functions/painel-dados',{ headers:{ Authorization: pwd } }); }
+  try{ r = await fetch('/api/painel-dados',{ headers:{ Authorization: pwd } }); }
   catch(e){ $('err').textContent='Network error. Try again.'; return; }
   if(r.status===401){ try{sessionStorage.removeItem('painel_pwd');}catch(e){} $('err').textContent='Wrong password.'; $('login').style.display='block'; $('app').style.display='none'; return; }
   if(!r.ok){ $('err').textContent='Server error ('+r.status+').'; return; }

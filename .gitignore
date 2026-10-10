@@ -3,3 +3,7 @@ node_modules
 # Python cache
 scripts/__pycache__/
 __pycache__/
+
+# Cloudflare local dev
+.dev.vars
+.wrangler/

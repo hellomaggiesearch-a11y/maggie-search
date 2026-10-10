@@ -1387,7 +1387,7 @@ function subscribePriceAlert(){
   var med=window.__paMed||{};
   var produto=med.name?((med.name+" "+(med.dose||"")).trim()):null;
   if(msg){msg.textContent="Saving…";msg.className="pa-msg";}
-  fetch("/.netlify/functions/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},
+  fetch("/api/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},
     body:JSON.stringify({email:email,produto:produto,termo:med.ai||null,website:hp})})
   .then(function(r){return r.json();}).then(function(d){
     if(d&&d.success){ if(msg){msg.textContent="✅ Done — we'll let you know. Thanks!";msg.className="pa-msg ok";} var e=document.getElementById("pa-email"); if(e){e.value="";} }
@@ -1434,6 +1434,6 @@ document.getElementById("btn-cookie-settings").addEventListener("click", functio
 if (!getConsent()) { showBanner(); }
 </script>
 
-<!--painel-tracker--><script>(function(){try{if(localStorage.getItem('maggie_consent')!=='granted')return;var b={path:location.pathname,ref:document.referrer};navigator.sendBeacon('/.netlify/functions/track',new Blob([JSON.stringify(b)],{type:'application/json'}));}catch(e){}})();</script>
+<!--painel-tracker--><script>(function(){try{if(localStorage.getItem('maggie_consent')!=='granted')return;var b={path:location.pathname,ref:document.referrer};navigator.sendBeacon('/api/track',new Blob([JSON.stringify(b)],{type:'application/json'}));}catch(e){}})();</script>
 </body>
 </html>
